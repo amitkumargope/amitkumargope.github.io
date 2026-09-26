@@ -435,9 +435,25 @@
     }
     .mobile-topbar .initials{ font-family: var(--mono); font-size: 0.8rem; color: var(--teal); border:1px solid var(--line-bright); padding: 0.2rem 0.5rem; }
     .mobile-menu-btn{ background:none; border: 1px solid var(--line-bright); border-radius: var(--radius); color: var(--paper); font-family: var(--mono); font-size: 0.75rem; padding: 0.4rem 0.7rem; }
-    .mobile-nav{ display:none; flex-direction:column; border-bottom: 1px solid var(--line); }
+    .mobile-nav{
+      display:none; flex-direction:column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      max-height: calc(100vh - 3.5rem); overflow-y: auto;
+      background: var(--graphite-2); border-bottom: 1px solid var(--line);
+      box-shadow: var(--shadow-md); z-index: 19;
+    }
     .mobile-nav.open{ display:flex; }
-    .mobile-nav a{ padding: 0.85rem 1.25rem; color: var(--paper-dim); border-top: 1px solid var(--line); font-size: 0.9rem; }
+    .mobile-nav a{
+      display:flex; align-items:center; gap: 0.65rem;
+      padding: 0.9rem 1.25rem; color: var(--paper-dim);
+      border-top: 1px solid var(--line); border-left: 2px solid transparent;
+      font-size: 0.9rem;
+    }
+    .mobile-nav a .tick{ font-family: var(--mono); font-size: 0.7rem; color: var(--line-bright); width: 1.4rem; flex-shrink:0; }
+    .mobile-nav a:hover, .mobile-nav a.active{
+      color: var(--paper); background: var(--graphite); border-left-color: var(--copper); text-decoration:none;
+    }
+    .mobile-nav a.active .tick{ color: var(--copper-bright); }
     .hero, .panel{ padding-left: 1.5rem; padding-right: 1.5rem; }
     .about-grid, .two-col{ grid-template-columns: 1fr; }
   }
@@ -452,16 +468,16 @@
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileNav">MENU</button>
 </div>
 <nav class="mobile-nav" id="mobileNav" aria-label="Section navigation">
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#experience">Experience</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="#publications">Publications</a>
-  <a href="#education">Education</a>
-  <a href="#repos">GitHub Repos</a>
-  <a href="#availability">Open For</a>
-  <a href="#contact">Contact</a>
+  <a href="#home"><span class="tick">00</span>Home</a>
+  <a href="#about"><span class="tick">01</span>About</a>
+  <a href="#experience"><span class="tick">02</span>Experience</a>
+  <a href="#skills"><span class="tick">03</span>Skills</a>
+  <a href="#projects"><span class="tick">04</span>Projects</a>
+  <a href="#publications"><span class="tick">05</span>Publications</a>
+  <a href="#education"><span class="tick">06</span>Education</a>
+  <a href="#repos"><span class="tick">07</span>GitHub Repos</a>
+  <a href="#availability"><span class="tick">08</span>Open For</a>
+  <a href="#contact"><span class="tick">09</span>Contact</a>
 </nav>
 
 <div class="layout">
@@ -991,13 +1007,16 @@ fetch('https://api.github.com/users/amitkumargope/repos?per_page=100&sort=update
 /* ===================== NAV SCROLLSPY ===================== */
 const navLinks = Array.from(document.querySelectorAll('.sitenav a'));
 const sections = navLinks.map(a => document.querySelector(a.getAttribute('href')));
+const allNavLinks = Array.from(document.querySelectorAll('.sitenav a, .mobile-nav a'));
 function onScroll(){
   let idx = 0;
   const y = window.scrollY + 140;
   sections.forEach((s, i) => { if (s && s.offsetTop <= y) idx = i; });
-  navLinks.forEach((a,i) => {
-    a.classList.toggle('active', i === idx);
-    if (i === idx) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+  const activeHref = navLinks[idx].getAttribute('href');
+  allNavLinks.forEach(a => {
+    const isActive = a.getAttribute('href') === activeHref;
+    a.classList.toggle('active', isActive);
+    if (isActive) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
   });
 }
 window.addEventListener('scroll', onScroll, { passive: true });
