@@ -216,8 +216,8 @@
   .beyond-cell li b{ color: var(--paper); font-weight: 500; }
   .quote-line{ font-size: 0.92rem; color: var(--copper-bright); font-style: italic; margin-top: 1.8rem; max-width: 60ch; }
 
-  .project-shot{ display:block; width: 100%; border: 1px solid var(--line); margin-bottom: 0.2rem; }
-  .project-shot-wrap{ overflow: hidden; }
+  .project-shot{ display:block; width: 100%; height: 100%; object-fit: cover; border: 1px solid var(--line); margin-bottom: 0.2rem; }
+  .project-shot-wrap{ overflow: hidden; aspect-ratio: 16 / 9; }
 
   .hero{
     position: relative;
@@ -287,6 +287,7 @@
     flex-wrap: wrap;
   }
   .panel-head h3{ font-size: 1.5rem; }
+  .panel > p{ color: var(--paper-dim); max-width: 70ch; }
   .panel-head .idx{
     font-family: var(--mono);
     color: var(--muted);
@@ -348,8 +349,8 @@
   .project-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.4rem; }
   .project-card{ border: 1px solid var(--line); padding: 1.5rem; display:flex; flex-direction:column; gap: 0.85rem; background: var(--graphite-2); transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
   .project-card:hover{ transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--line-bright); }
-  .project-card .project-shot-wrap{ margin: -1.5rem -1.5rem 0.3rem; overflow:hidden; border-bottom: 1px solid var(--line); }
-  .project-card .project-shot{ width:100%; display:block; border:none; margin:0; transition: transform 0.4s ease; }
+  .project-card .project-shot-wrap{ margin: -1.5rem -1.5rem 0.3rem; overflow:hidden; border-bottom: 1px solid var(--line); aspect-ratio: 16 / 9; }
+  .project-card .project-shot{ width:100%; height:100%; object-fit: cover; display:block; border:none; margin:0; transition: transform 0.4s ease; }
   .project-card:hover .project-shot{ transform: scale(1.03); }
   .project-card h4{ font-size: 1.05rem; }
   .project-card .stack{ font-family: var(--mono); font-size: 0.74rem; color: var(--muted); }
@@ -458,7 +459,9 @@
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
   <a href="#publications">Publications</a>
+  <a href="#education">Education</a>
   <a href="#repos">GitHub Repos</a>
+  <a href="#availability">Open For</a>
   <a href="#contact">Contact</a>
 </nav>
 
@@ -481,7 +484,8 @@
         <li><a href="#publications"><span class="tick">05</span>Publications</a></li>
         <li><a href="#education"><span class="tick">06</span>Education</a></li>
         <li><a href="#repos"><span class="tick">07</span>GitHub Repos</a></li>
-        <li><a href="#contact"><span class="tick">08</span>Contact</a></li>
+        <li><a href="#availability"><span class="tick">08</span>Open For</a></li>
+        <li><a href="#contact"><span class="tick">09</span>Contact</a></li>
       </ul>
     </nav>
 
@@ -626,8 +630,50 @@
       </div>
     </section>
 
+    <section class="panel" id="availability">
+      <div class="panel-head"><h3>Open For</h3><span class="idx">08 / AVAILABILITY</span></div>
+      <p>Outside my full-time role, I take on a limited number of freelance, volunteer, and speaking engagements — where deep grounding in applied ML, materials science, and industrial AI can genuinely move something forward. If any of the following matches what you're building, teaching, or organizing, I'd like to hear from you.</p>
+      <div class="beyond-grid" style="margin-top:1.8rem">
+        <div class="beyond-cell">
+          <h4>Freelance &amp; Consulting</h4>
+          <ul>
+            <li>Short, well-scoped ML/AI engagements</li>
+            <li>Model development, data pipelines, or a second opinion on an existing system</li>
+            <li>Best fit: targeted expertise, not a full-time hire</li>
+          </ul>
+        </div>
+        <div class="beyond-cell">
+          <h4>Volunteering &amp; Mentorship</h4>
+          <ul>
+            <li>Mentoring early-career engineers moving into applied ML</li>
+            <li>Pro-bono support for non-profit and STEM-access initiatives</li>
+            <li>Portfolio &amp; direction guidance for career-switchers into AI</li>
+          </ul>
+        </div>
+        <div class="beyond-cell">
+          <h4>Technical Writing</h4>
+          <ul>
+            <li>Deep-dive articles translating research-grade ML into implementable engineering</li>
+            <li>Documentation, whitepapers, and case studies</li>
+            <li>Comfortable writing for both technical and mixed audiences</li>
+          </ul>
+        </div>
+        <div class="beyond-cell">
+          <h4>Seminars, Webinars &amp; Guest Lectures</h4>
+          <ul>
+            <li>Guest lectures and seminars for university programs</li>
+            <li>Webinars on applied ML, physics-informed modeling, and industrial AI</li>
+            <li>Talks on moving into AI research from a non-CS background</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cta-row" style="margin-top:1.8rem">
+        <a class="btn primary" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
     <section class="panel contact-panel" id="contact">
-      <div class="panel-head"><h3>Get in touch</h3><span class="idx">08 / CONTACT</span></div>
+      <div class="panel-head"><h3>Get in touch</h3><span class="idx">09 / CONTACT</span></div>
       <div class="contact-grid">
         <div class="contact-card">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="m2 6 10 7L22 6"/></svg>
@@ -723,7 +769,7 @@ const projects = [
     desc: "U-Net-based semantic segmentation for steel surface defect detection on the Severstal dataset, handling severe class imbalance. Deployed with edge GPU inference, live drift monitoring, and a battery-industry adaptation (electrode coating, separator, tab/weld inspection).",
     metric: "91.17% Dice score · 98%+ detection accuracy",
     link: "https://github.com/amitkumargope/Amit-s_Kaggle_competitions-_2025/tree/main/Severstal-Steel%20Defect%20Detection",
-    img: "assets/proj-steel-defect.jpg", w: 900, h: 600
+    img: "assets/proj-steel-defect.jpg", w: 800, h: 450
   },
   {
     title: "Yield Strength Prediction for Steel",
@@ -731,7 +777,7 @@ const projects = [
     desc: "Ensemble pipeline (ExtraTrees + CatBoost) across 80+ metallurgical features with SHAP-based explainability, turning chemistry and process parameters into a deployed yield-strength prediction interface.",
     metric: "RMSE 119.23 — 10.39% over baseline",
     link: "https://github.com/amitkumargope/Amit-s_Kaggle_competitions-_2025/blob/main/Predicting%20the%20yield%20strength%20of%20steel/Predicting%20the%20yield%20strength%20of%20steel.ipynb",
-    img: "assets/proj-yield-strength.jpg", w: 900, h: 600
+    img: "assets/proj-yield-strength.jpg", w: 800, h: 450
   },
   {
     title: "BOF WearIQ: Refractory Wear Analysis",
@@ -739,7 +785,7 @@ const projects = [
     desc: "Production-grade digital twin using 3D laser-scan data for zone-level refractory wear quantification, campaign tracking, anomaly detection, remaining-useful-life forecasting, and automated 2D/3D reporting.",
     metric: "Confidential — production pipeline",
     link: "",
-    img: "assets/proj-bof-weariq.jpg", w: 900, h: 600
+    img: "assets/proj-bof-weariq.jpg", w: 800, h: 450
   },
   {
     title: "Clogging Detection & Analytics System",
@@ -747,7 +793,7 @@ const projects = [
     desc: "Real-time monitoring, prediction, and anomaly-detection system for continuous steel casting, integrating 31 process parameters across ladle, tundish, stopper, SEN and mould into a hybrid ML pipeline with live risk dashboards and root-cause alerts.",
     metric: "35% fewer breakouts · 40% faster detection",
     link: "https://github.com/amitkumargope/Deep-Neural-Networks-For-Clogging-Detection",
-    img: "assets/proj-clogging-detection.jpg", w: 900, h: 506
+    img: "assets/proj-clogging-detection.jpg", w: 800, h: 450
   },
   {
     title: "Signal Segmentation & Stable Region Detection (MLF Analyzer)",
@@ -755,7 +801,7 @@ const projects = [
     desc: "Vibration &amp; level-fluctuation analytics for continuous casting — hybrid DWT/EMD signal decomposition feeding a deep anomaly-detection model, with a live stability index and MLOps deployment pipeline.",
     metric: ">99% detection accuracy · <50ms latency",
     link: "",
-    img: "assets/proj-mlf-analyzer.jpg", w: 900, h: 506
+    img: "assets/proj-mlf-analyzer.jpg", w: 800, h: 450
   },
   {
     title: "Hybrid LSTM/GRU Solar Irradiance Forecasting",
@@ -763,7 +809,7 @@ const projects = [
     desc: "Stacked LSTM/GRU deep learning model forecasting global horizontal irradiance from 15+ multimodal meteorological and pollution-related inputs, with anomaly detection and a real-time inference pipeline for grid-stability and energy-scheduling use cases.",
     metric: "R² 0.92 · 92% accuracy",
     link: "https://www.mdpi.com/2073-4360/14/13/2739",
-    img: "assets/proj-solar-irradiance.jpg", w: 900, h: 506
+    img: "assets/proj-solar-irradiance.jpg", w: 800, h: 450
   },
   {
     title: "CPC-PVT Solar Thermal System with PCM Heat Sink",
@@ -771,7 +817,7 @@ const projects = [
     desc: "Final thesis project: mathematical modeling and outdoor experimental validation of a compound parabolic collector PV/thermal system integrating phase-change material as a heat sink, with a full sensor suite and simulation-vs-experiment validation.",
     metric: "15 wt.% paraffin PCM — optimal performance",
     link: "",
-    img: "assets/proj-cpc-pvt-thesis.jpg", w: 900, h: 600
+    img: "assets/proj-cpc-pvt-thesis.jpg", w: 800, h: 450
   }
 ];
 
