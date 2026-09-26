@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amit Kumar Gope — AI Research Scientist / ML Engineer</title>
+<meta name="description" content="Portfolio of Amit Kumar Gope — AI Research Scientist specializing in physics-informed ML, computer vision, and industrial process optimization.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --graphite: #10161A;
+    --graphite-2: #171F24;
+    --graphite-3: #1D262C;
+    --paper: #E9E5DA;
+    --paper-dim: #C9C5BA;
+    --copper: #C2703D;
+    --copper-bright: #D98A54;
+    --teal: #5FA8A0;
+    --line: #2C383D;
+    --line-bright: #3C4C52;
+    --muted: #7E8B89;
+    --danger-red: #B4543A;
+    --radius: 2px;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body{
+    background: var(--graphite);
+    color: var(--paper);
+    font-family: var(--sans);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  a { color: var(--copper-bright); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+  ::selection { background: var(--copper); color: var(--graphite); }
+
+  h1,h2,h3,h4 { font-weight: 600; letter-spacing: -0.01em; }
+
+  .layout{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar{
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    border-right: 1px solid var(--line);
+    padding: 2.25rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background: var(--graphite);
+    overflow-y: auto;
+  }
+
+  .id-block .initials{
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--teal);
+    border: 1px solid var(--line-bright);
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 0.9rem;
+    letter-spacing: 0.08em;
+  }
+  .id-block h1{
+    font-size: 1.35rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  .id-block .role{
+    color: var(--paper-dim);
+    font-size: 0.92rem;
+    max-width: 24ch;
+  }
+
+  nav.sitenav ul{ list-style:none; display:flex; flex-direction:column; gap: 0.15rem; }
+  nav.sitenav a{
+    display:flex;
+    align-items:center;
+    gap: 0.65rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+    padding: 0.4rem 0.3rem;
+    border-left: 2px solid transparent;
+    text-decoration:none;
+  }
+  nav.sitenav a .tick{
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--line-bright);
+    width: 1.4rem;
+  }
+  nav.sitenav a:hover, nav.sitenav a.active{
+    color: var(--paper);
+    border-left-color: var(--copper);
+    background: var(--graphite-2);
+  }
+  nav.sitenav a.active .tick{ color: var(--copper-bright); }
+
+  .sidebar-stats{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .stat-cell{
+    background: var(--graphite);
+    padding: 0.7rem 0.6rem;
+  }
+  .stat-cell .n{ font-family: var(--mono); font-size: 1.15rem; color: var(--copper-bright); }
+  .stat-cell .l{ font-size: 0.68rem; color: var(--muted); margin-top: 0.15rem; }
+
+  .sidebar-links{ display:flex; gap: 0.9rem; margin-top: auto; }
+  .sidebar-links a{ color: var(--muted); display:flex; }
+  .sidebar-links a:hover{ color: var(--teal); }
+  .sidebar-links svg{ width:18px; height:18px; }
+
+  .sidebar-foot{ font-family: var(--mono); font-size: 0.68rem; color: var(--muted); }
+
+  /* ============ MAIN ============ */
+  main{ min-width: 0; }
+
+  .hero-top{ display:flex; gap: 2.5rem; align-items: flex-start; flex-wrap: wrap; }
+  .hero-text{ flex: 1 1 420px; min-width: 0; }
+  .portrait-frame{
+    position: relative;
+    flex: 0 0 220px;
+    width: 220px;
+    height: 260px;
+    border: 1px solid var(--line-bright);
+    padding: 6px;
+  }
+  .portrait-frame img{ width:100%; height:100%; object-fit: cover; object-position: center 20%; display:block; }
+  .portrait-frame .tag{
+    position: absolute; bottom: -10px; left: 12px;
+    background: var(--graphite); border: 1px solid var(--line-bright);
+    font-family: var(--mono); font-size: 0.62rem; color: var(--teal);
+    padding: 0.2rem 0.5rem;
+  }
+  @media (max-width: 700px){ .portrait-frame{ display:none; } }
+
+  .about-photo{
+    flex: 0 0 190px; width: 190px; height: 230px;
+    border: 1px solid var(--line-bright); padding: 5px; align-self: flex-start;
+  }
+  .about-photo img{ width:100%; height:100%; object-fit: cover; display:block; }
+
+  .beyond-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 2.2rem; }
+  .beyond-cell{ background: var(--graphite); padding: 1.2rem 1.3rem; }
+  .beyond-cell h4{ font-family: var(--mono); font-size: 0.78rem; color: var(--teal); margin-bottom: 0.7rem; font-weight: 500; }
+  .beyond-cell ul{ list-style:none; }
+  .beyond-cell li{ font-size: 0.85rem; color: var(--paper-dim); padding: 0.3rem 0; }
+  .beyond-cell li b{ color: var(--paper); font-weight: 500; }
+  .quote-line{ font-size: 0.92rem; color: var(--copper-bright); font-style: italic; margin-top: 1.8rem; max-width: 60ch; }
+
+  .project-shot{ display:block; width: 100%; border: 1px solid var(--line); margin-bottom: 0.2rem; }
+  .project-shot-wrap{ overflow: hidden; }
+  .pub-shot{ width: 100%; border: 1px solid var(--line); margin-top: 0.8rem; }
+
+  .hero{
+    position: relative;
+    padding: 4.5rem 3.5rem 3.5rem;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, var(--graphite-2) 28px);
+  }
+  .hero .eyebrow-line{
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--teal);
+    margin-bottom: 1.4rem;
+  }
+  .hero h2{
+    font-size: clamp(2rem, 4vw, 3rem);
+    max-width: 16ch;
+    line-height: 1.15;
+  }
+  .hero h2 .accent{ color: var(--copper-bright); }
+  .hero p.lede{
+    margin-top: 1.4rem;
+    max-width: 62ch;
+    color: var(--paper-dim);
+    font-size: 1.05rem;
+  }
+  .hero .cta-row{ display:flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+  .btn{
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    padding: 0.65rem 1.1rem;
+    border: 1px solid var(--line-bright);
+    color: var(--paper);
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn:hover{ border-color: var(--copper); color: var(--copper-bright); text-decoration:none; }
+  .btn.primary{ background: var(--copper); border-color: var(--copper); color: var(--graphite); }
+  .btn.primary:hover{ background: var(--copper-bright); color: var(--graphite); }
+
+  #signal-canvas{
+    width: 100%;
+    height: 90px;
+    display:block;
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .panel{
+    position: relative;
+    padding: 3rem 3.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .panel-head{
+    display:flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.9rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .panel-head h3{ font-size: 1.5rem; }
+  .panel-head .idx{
+    font-family: var(--mono);
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .panel::before, .panel::after,
+  .hero::before, .hero::after{
+    content:"";
+    position:absolute;
+    width: 14px; height: 14px;
+    border-color: var(--line-bright);
+    pointer-events:none;
+  }
+  .panel::before, .hero::before{ top: 12px; left: 12px; border-top: 1px solid; border-left: 1px solid; }
+  .panel::after, .hero::after{ bottom: 12px; right: 12px; border-bottom: 1px solid; border-right: 1px solid; }
+
+  /* About */
+  .about-grid{ display:grid; grid-template-columns: 1.5fr 1fr; gap: 2.5rem; }
+  .about-grid p{ color: var(--paper-dim); margin-bottom: 1rem; }
+  .fact-list{ list-style:none; font-size: 0.9rem; }
+  .fact-list li{ display:flex; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px solid var(--line); gap: 1rem; }
+  .fact-list li span:first-child{ color: var(--muted); font-family: var(--mono); font-size: 0.78rem; }
+  .fact-list li span:last-child{ text-align:right; }
+
+  /* Experience */
+  .timeline{ position: relative; padding-left: 2.4rem; }
+  .timeline::before{ content:""; position:absolute; left: 0.55rem; top: 0.4rem; bottom: 0.4rem; width:1px; background: var(--line-bright); }
+  .tl-item{ position: relative; padding-bottom: 2.6rem; }
+  .tl-item:last-child{ padding-bottom: 0; }
+  .tl-item .dot{
+    position:absolute; left: -2.4rem; top: 0.25rem;
+    width: 1.15rem; height: 1.15rem;
+    border: 1px solid var(--copper);
+    background: var(--graphite);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--mono); font-size: 0.6rem; color: var(--copper-bright);
+  }
+  .tl-item h4{ font-size: 1.1rem; }
+  .tl-item .org{ color: var(--teal); font-size: 0.9rem; margin-top: 0.15rem; }
+  .tl-item .when{ font-family: var(--mono); font-size: 0.76rem; color: var(--muted); margin-top: 0.2rem; }
+  .tl-item p{ color: var(--paper-dim); margin-top: 0.75rem; max-width: 72ch; font-size: 0.95rem; }
+
+  /* Skills */
+  .skill-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .skill-cell{ background: var(--graphite); padding: 1.3rem 1.4rem; }
+  .skill-cell h4{ font-size: 0.82rem; font-family: var(--mono); color: var(--teal); margin-bottom: 0.75rem; font-weight: 500; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap: 0.4rem; }
+  .chip{
+    font-size: 0.78rem;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid var(--line-bright);
+    color: var(--paper-dim);
+    font-family: var(--mono);
+  }
+
+  /* Projects */
+  .project-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.4rem; }
+  .project-card{ border: 1px solid var(--line); padding: 1.5rem; display:flex; flex-direction:column; gap: 0.85rem; background: var(--graphite-2); }
+  .project-card .project-shot-wrap{ margin: -1.5rem -1.5rem 0.3rem; overflow:hidden; border-bottom: 1px solid var(--line); }
+  .project-card .project-shot{ width:100%; display:block; border:none; margin:0; transition: transform 0.4s ease; }
+  .project-card:hover .project-shot{ transform: scale(1.03); }
+  .project-card h4{ font-size: 1.05rem; }
+  .project-card .stack{ font-family: var(--mono); font-size: 0.74rem; color: var(--muted); }
+  .project-card p{ color: var(--paper-dim); font-size: 0.92rem; flex-grow:1; }
+  .project-card .metric{ color: var(--copper-bright); font-family: var(--mono); font-size: 0.85rem; }
+  .project-card .links a{ font-size: 0.82rem; font-family: var(--mono); }
+
+  /* Publications / education / awards */
+  .pub-item{ border-bottom: 1px solid var(--line); padding: 1.1rem 0; }
+  .pub-item:last-child{ border-bottom:none; }
+  .pub-item .cite{ color: var(--paper-dim); font-size: 0.95rem; }
+  .pub-item .meta{ font-family: var(--mono); font-size: 0.76rem; color: var(--muted); margin-top: 0.35rem; }
+
+  .two-col{ display:grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  @media (max-width: 900px){ .two-col{ grid-template-columns: 1fr; } }
+
+  .edu-item h4{ font-size: 1rem; }
+  .edu-item .org{ color: var(--teal); font-size: 0.88rem; margin-top: 0.15rem; }
+  .edu-item .when{ font-family: var(--mono); font-size: 0.74rem; color: var(--muted); margin-top: 0.15rem; }
+  .edu-item p{ color: var(--paper-dim); font-size: 0.88rem; margin-top: 0.5rem; }
+  .edu-item{ margin-bottom: 1.6rem; }
+  .award-item{ display:flex; gap: 0.9rem; margin-bottom: 1.2rem; }
+  .award-item .mark{ font-family: var(--mono); color: var(--copper-bright); }
+  .award-item p{ color: var(--paper-dim); font-size: 0.88rem; }
+  .award-item h4{ font-size: 0.95rem; }
+
+  .cert-heading{ font-family: var(--mono); font-size: 0.78rem; color: var(--teal); margin-bottom: 0.9rem; font-weight: 500; }
+  .cert-list{ list-style:none; }
+  .cert-list li{ font-size: 0.88rem; color: var(--paper-dim); padding: 0.55rem 0; border-bottom: 1px solid var(--line); }
+  .cert-list li:last-child{ border-bottom:none; }
+  .cert-list li .meta{ display:block; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-top: 0.25rem; }
+
+  .now-badge{ font-family: var(--mono); font-size: 0.6rem; color: var(--graphite); background: var(--teal); padding: 0.14rem 0.4rem; margin-left: 0.5rem; vertical-align: middle; letter-spacing: 0.04em; }
+  .dot-current{ border-color: var(--teal); color: var(--teal); }
+  .earlier-note{ font-size: 0.82rem; color: var(--muted); margin-top: 1.6rem; max-width: 68ch; }
+
+  /* LinkedIn activity */
+  .activity-note{
+    font-size: 0.85rem;
+    color: var(--muted);
+    border: 1px dashed var(--line-bright);
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1.8rem;
+    max-width: 62ch;
+  }
+  .post-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.4rem; }
+  .post-card{ border: 1px solid var(--line); padding: 1.4rem; background: var(--graphite-2); display:flex; flex-direction:column; gap: 0.7rem; }
+  .post-card .when{ font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+  .post-card p{ color: var(--paper-dim); font-size: 0.9rem; }
+  .post-card .tag{ font-family: var(--mono); font-size: 0.7rem; color: var(--teal); }
+  .post-card a.readmore{ font-family: var(--mono); font-size: 0.78rem; }
+  .li-empty{ color: var(--muted); font-size: 0.9rem; }
+
+  /* Contact */
+  .contact-panel{ padding-bottom: 5rem; }
+  .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  @media (max-width: 900px){ .contact-grid{ grid-template-columns: 1fr; } }
+  .contact-card{ border: 1px solid var(--line); padding: 1.4rem; display:flex; align-items:center; gap: 1rem; }
+  .contact-card svg{ width: 22px; height: 22px; color: var(--teal); flex-shrink:0; }
+  .contact-card .l{ font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+  .contact-card .v{ font-size: 0.98rem; }
+  .contact-card .v a{ color: var(--paper); }
+  .contact-card .v a:hover{ color: var(--copper-bright); }
+
+  .copy-btn{ background:none; border:none; color: var(--muted); cursor:pointer; font-family: var(--mono); font-size: 0.7rem; margin-left: auto; }
+  .copy-btn:hover{ color: var(--teal); }
+
+  footer{ padding: 2rem 3.5rem; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap: 0.5rem; }
+
+  /* Mobile */
+  .mobile-topbar{ display:none; }
+  @media (max-width: 880px){
+    .layout{ grid-template-columns: 1fr; }
+    .sidebar{ display:none; }
+    .mobile-topbar{
+      display:flex; align-items:center; justify-content: space-between;
+      padding: 1rem 1.25rem; border-bottom: 1px solid var(--line);
+      position: sticky; top:0; background: var(--graphite); z-index: 20;
+    }
+    .mobile-topbar .initials{ font-family: var(--mono); font-size: 0.8rem; color: var(--teal); border:1px solid var(--line-bright); padding: 0.2rem 0.5rem; }
+    .mobile-menu-btn{ background:none; border: 1px solid var(--line-bright); color: var(--paper); font-family: var(--mono); font-size: 0.75rem; padding: 0.4rem 0.7rem; }
+    .mobile-nav{ display:none; flex-direction:column; border-bottom: 1px solid var(--line); }
+    .mobile-nav.open{ display:flex; }
+    .mobile-nav a{ padding: 0.85rem 1.25rem; color: var(--paper-dim); border-top: 1px solid var(--line); font-size: 0.9rem; }
+    .hero, .panel{ padding-left: 1.5rem; padding-right: 1.5rem; }
+    .about-grid, .two-col{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mobile-topbar">
+  <span class="initials">AKG</span>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileNav">MENU</button>
+</div>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#publications">Publications</a>
+  <a href="#activity">LinkedIn</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="id-block">
+      <span class="initials">AKG</span>
+      <h1>Amit Kumar Gope</h1>
+      <div class="role">Senior AI Research Engineer — battery &amp; industrial AI</div>
+    </div>
+
+    <nav class="sitenav" aria-label="Section navigation">
+      <ul id="navList">
+        <li><a href="#home" class="active"><span class="tick">00</span>Home</a></li>
+        <li><a href="#about"><span class="tick">01</span>About</a></li>
+        <li><a href="#experience"><span class="tick">02</span>Experience</a></li>
+        <li><a href="#skills"><span class="tick">03</span>Skills</a></li>
+        <li><a href="#projects"><span class="tick">04</span>Projects</a></li>
+        <li><a href="#publications"><span class="tick">05</span>Publications</a></li>
+        <li><a href="#education"><span class="tick">06</span>Education</a></li>
+        <li><a href="#activity"><span class="tick">07</span>LinkedIn</a></li>
+        <li><a href="#contact"><span class="tick">08</span>Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-stats">
+      <div class="stat-cell"><div class="n">7+ yrs</div><div class="l">Applied ML / research</div></div>
+      <div class="stat-cell"><div class="n">2</div><div class="l">Peer-reviewed papers</div></div>
+      <div class="stat-cell"><div class="n">5</div><div class="l">Industrial AI projects</div></div>
+      <div class="stat-cell"><div class="n">3</div><div class="l">Countries worked in</div></div>
+    </div>
+
+    <div class="sidebar-links">
+      <a href="https://github.com/amitkumargope" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.03 3.26 9.29 7.79 10.8.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.67 1.24 3.32.95.1-.74.4-1.25.72-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.48 3.13-1.17 3.13-1.17.63 1.57.24 2.73.12 3.02.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.34-5.21 5.62.41.36.77 1.06.77 2.15 0 1.55-.01 2.8-.01 3.18 0 .3.2.66.79.55A10.53 10.53 0 0 0 23.5 12.02C23.5 5.74 18.27.5 12 .5Z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/amit-kumargope-1b223512b/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+      </a>
+      <a href="mailto:amitkumargope58@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="m2 6 10 7L22 6"/></svg>
+      </a>
+    </div>
+
+    <div class="sidebar-foot">TAOYUAN, TAIWAN · GMT+8</div>
+  </aside>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="hero-top">
+        <div class="hero-text">
+          <div class="eyebrow-line">amit_gope@industrial-ai:~$ whoami</div>
+          <h2>Turning battery, materials &amp; process data into <span class="accent">deployable AI systems.</span></h2>
+          <p class="lede">I'm a Senior AI Research Engineer working at the intersection of machine learning, materials science, and industrial process optimization — building physics-informed models, computer vision pipelines, and predictive-maintenance systems across batteries, steelmaking, and refractories.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="#projects">View projects</a>
+            <a class="btn" href="#contact">Get in touch</a>
+            <a class="btn" href="https://github.com/amitkumargope" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="portrait-frame">
+          <img src="assets/portrait.jpg" alt="Portrait of Amit Kumar Gope">
+          <span class="tag">TAOYUAN, TW</span>
+        </div>
+      </div>
+      <canvas id="signal-canvas" aria-hidden="true"></canvas>
+    </section>
+
+    <section class="panel" id="about">
+      <div class="panel-head"><h3>About</h3><span class="idx">01 / SUMMARY</span></div>
+      <div class="about-grid">
+        <div>
+          <p>I'm a Senior AI Research Engineer currently working in the battery industry, with a background spanning machine learning, materials science, steelmaking, and industrial process optimization. My work focuses on applying AI to battery analytics — state estimation, aging prediction, anomaly detection, predictive maintenance, and intelligent decision-support systems.</p>
+          <p>I use time-series modeling, deep learning, hybrid physics–AI approaches, and explainable machine learning to turn complex sensor and operational data into practical engineering insights, with particular interest in battery intelligence, digital twins, adaptive estimation, MLOps, and scalable AI systems that improve reliability, safety, performance, and manufacturing efficiency.</p>
+        </div>
+        <ul class="fact-list">
+          <li><span>Role</span><span>Senior AI Research Engineer</span></li>
+          <li><span>Focus</span><span>Battery intelligence, physics-informed ML, CV</span></li>
+          <li><span>Industries</span><span>Batteries, steelmaking, refractories</span></li>
+          <li><span>Based in</span><span>Taoyuan, Taiwan</span></li>
+          <li><span>Languages</span><span>EN (professional), FR (elementary), HI (native), BN (intermediate)</span></li>
+        </ul>
+      </div>
+      <div class="beyond-grid">
+        <div class="beyond-cell">
+          <h4>How I work</h4>
+          <ul>
+            <li>Self-driven, initiative-oriented — thrive in fast-paced environments</li>
+            <li>Take ownership and drive execution end-to-end</li>
+            <li>Adapt fast, learn faster, grow faster</li>
+          </ul>
+        </div>
+        <div class="beyond-cell">
+          <h4>Leadership &amp; community</h4>
+          <ul>
+            <li><b>VPE, Toastmasters Club</b> — Mons: leadership, public speaking, confidence</li>
+            <li><b>Alumni President</b> — Vel Tech Chapter: mentoring &amp; knowledge-sharing webinars</li>
+          </ul>
+        </div>
+        <div class="beyond-cell">
+          <h4>Beyond work</h4>
+          <ul>
+            <li><b>Cycling</b> — freedom, fitness, focus</li>
+            <li><b>Hiking</b> — explore, challenge, rejuvenate</li>
+            <li><b>Reading</b> — learn, reflect, inspire</li>
+          </ul>
+        </div>
+        <div class="beyond-cell">
+          <h4>Core values</h4>
+          <ul>
+            <li><b>Integrity</b> — do the right thing</li>
+            <li><b>Curiosity</b> — always learning</li>
+            <li><b>Innovation</b> — solve with purpose</li>
+            <li><b>Collaboration</b> — stronger together</li>
+          </ul>
+        </div>
+      </div>
+      <p class="quote-line">"Understand the problem deeply, build solutions practically, and improve continuously."</p>
+    </section>
+
+    <section class="panel" id="experience">
+      <div class="panel-head"><h3>Experience</h3><span class="idx">02 / TIMELINE</span></div>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="panel" id="skills">
+      <div class="panel-head"><h3>Skills &amp; Toolkit</h3><span class="idx">03 / STACK</span></div>
+      <div class="skill-grid" id="skillGrid"></div>
+    </section>
+
+    <section class="panel" id="projects">
+      <div class="panel-head"><h3>Selected Projects</h3><span class="idx">04 / BUILDS</span></div>
+      <div class="project-grid" id="projectGrid"></div>
+    </section>
+
+    <section class="panel" id="publications">
+      <div class="two-col">
+        <div>
+          <div class="panel-head"><h3>Publications</h3><span class="idx">05 / PAPERS</span></div>
+          <div id="pubList"></div>
+        </div>
+        <div>
+          <div class="panel-head"><h3>Honors &amp; Awards</h3></div>
+          <div id="awardList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="education">
+      <div class="panel-head"><h3>Education &amp; Certifications</h3><span class="idx">06 / TRAINING</span></div>
+      <div class="two-col">
+        <div id="eduList"></div>
+        <div id="certList"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="activity">
+      <div class="panel-head"><h3>Latest from LinkedIn</h3><span class="idx">07 / ACTIVITY LOG</span></div>
+      <p class="activity-note">LinkedIn doesn't allow live embedding of a personal feed without a paid third-party service or an approved API partnership, so this panel reads from the <code>linkedinPosts</code> array in the script below — update it whenever you publish a new post (see the comment in the code). Automating it: a service like RSS.app, Taggbox, or a Zapier → Airtable → JSON pipeline can convert your public activity into a feed you paste in here.</p>
+      <div class="post-grid" id="postGrid"></div>
+      <div class="cta-row" style="margin-top:1.8rem">
+        <a class="btn" href="https://www.linkedin.com/in/amit-kumargope-1b223512b/recent-activity/all/" target="_blank" rel="noopener">View all activity on LinkedIn ↗</a>
+      </div>
+    </section>
+
+    <section class="panel contact-panel" id="contact">
+      <div class="panel-head"><h3>Get in touch</h3><span class="idx">08 / CONTACT</span></div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="m2 6 10 7L22 6"/></svg>
+          <div><div class="l">EMAIL</div><div class="v"><a href="mailto:amitkumargope58@gmail.com">amitkumargope58@gmail.com</a></div></div>
+          <button class="copy-btn" id="copyEmailBtn" type="button">COPY</button>
+        </div>
+        <div class="contact-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+          <div><div class="l">LINKEDIN</div><div class="v"><a href="https://www.linkedin.com/in/amit-kumargope-1b223512b/" target="_blank" rel="noopener">amit-kumargope</a></div></div>
+        </div>
+        <div class="contact-card">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.03 3.26 9.29 7.79 10.8.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.67 1.24 3.32.95.1-.74.4-1.25.72-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.48 3.13-1.17 3.13-1.17.63 1.57.24 2.73.12 3.02.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.34-5.21 5.62.41.36.77 1.06.77 2.15 0 1.55-.01 2.8-.01 3.18 0 .3.2.66.79.55A10.53 10.53 0 0 0 23.5 12.02C23.5 5.74 18.27.5 12 .5Z"/></svg>
+          <div><div class="l">GITHUB</div><div class="v"><a href="https://github.com/amitkumargope" target="_blank" rel="noopener">amitkumargope</a></div></div>
+        </div>
+        <div class="contact-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.2A7 7 0 0 1 19 9.8C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+          <div><div class="l">LOCATION</div><div class="v">Taoyuan, Taiwan</div></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Amit Kumar Gope</span>
+      <span>Built as a static single-file site — deploy anywhere</span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+/* ===================== DATA ===================== */
+/* Edit these arrays to update the site's content. */
+
+const experience = [
+  {
+    role: "Senior AI Research Engineer",
+    org: "TrendPower Technology — Taoyuan City, Taiwan",
+    when: "Aug 2026 – Present",
+    current: true,
+    desc: "Applied AI research in the battery industry — battery analytics, state estimation, aging prediction, anomaly detection, predictive maintenance, and intelligent decision-support systems, using time-series modeling, deep learning, and hybrid physics–AI approaches."
+  },
+  {
+    role: "AI Research Scientist – Materials",
+    org: "Vesuvius Group PLC — Mons, Belgium",
+    when: "Jun 2024 – Aug 2026",
+    desc: "Developed predictive analytics models for computational materials applications, designed deep learning models in TensorFlow for thermal conductivity and tensile strength prediction, and built ML pipelines integrating real-time sensor and process data from continuous steel casting systems to predict clogging behavior and identify operational drivers. Designed a Python-based real-time analytics dashboard combining statistical process control, signal processing, and ML for industrial diagnostics."
+  },
+  {
+    role: "R&D Data Scientist – Materials",
+    org: "Vesuvius Group PLC — Mons, Belgium",
+    when: "Apr 2023 – Jun 2024",
+    desc: "Worked with large, high-dimensional industrial datasets, combining materials knowledge with AI methods to support process monitoring, anomaly detection, and operational intelligence — translating research insights into deployable analytics tools with industrial stakeholders."
+  },
+  {
+    role: "AI Research Assistant – Materials and Modelling",
+    org: "National Taiwan University of Science and Technology — Taipei, Taiwan",
+    when: "Sep 2022 – Jan 2023",
+    desc: "Collaborated on classification models using Scikit-learn and Keras for quality identification in polypropylene fibre melt spinning. Processed experimental datasets with Pandas and NumPy, focusing on feature selection and dimensionality reduction (PCA). Implemented a hybrid LSTM/GRU model for solar irradiance prediction integrating meteorological and pollution characteristics."
+  },
+  {
+    role: "Machine Learning Engineer",
+    org: "Sikharthy Infotech Pvt Ltd — Kolkata, India",
+    when: "Oct 2019 – Nov 2020",
+    desc: "Built a deep learning predictive-maintenance model estimating remaining useful life of turbofan engines from sensor telemetry. Deployed a CNN-based computer vision pipeline detecting surface cracks and corrosion in fuselage skin images. Developed an autoencoder-based anomaly detection system for CFRP defect identification from ultrasonic scan data."
+  },
+  {
+    role: "AI & Computational Materials Intern",
+    org: "National Cheng Kung University — Tainan City, Taiwan",
+    when: "Feb 2019 – Aug 2019",
+    desc: "Designed and simulated a modified Francis turbine for vertical-axis wind turbine systems. Conducted CFD analysis using ANSYS Fluent and SolidWorks, investigating fluid-flow characteristics and validating models against theoretical benchmarks to improve renewable-energy generation efficiency."
+  }
+];
+
+const earlierRoles = "Earlier: Product Designer Intern (CAD/SolidWorks) at Ananth Technologies, Hyderabad (2018) · Internshala Student Partner (2017–18) · Design & Development Engineer at JET Aerospace, Kerala (2017).";
+
+const skills = [
+  { cat: "Programming & Computing", items: ["Python","MATLAB","SQL","Pandas","NumPy","Jupyter","Linux/CLI"] },
+  { cat: "Battery & Energy Systems", items: ["State estimation","Aging prediction","Battery Management Systems (BMS)","Digital twins","Solar PV design","Thermal modeling"] },
+  { cat: "Machine Learning", items: ["Supervised & unsupervised learning","Predictive modeling","Anomaly detection","Feature engineering","Automated feature engineering","Dimensionality reduction","Model validation"] },
+  { cat: "Deep Learning", items: ["TensorFlow","Keras","PyTorch","CNNs","U-Net","LSTM / GRU","Transfer learning","Conditional image generation"] },
+  { cat: "Computer Vision", items: ["OpenCV","Defect detection","Segmentation","Metrology","Inspection pipelines"] },
+  { cat: "Physics-Informed / Hybrid", items: ["PINNs","Physics-guided features","Constraint-aware learning","Domain-knowledge integration"] },
+  { cat: "Signal & Time-Series", items: ["Multivariate time series","FFT / STFT","Wavelets","Change-point detection","Sensor fusion","Vibration analytics"] },
+  { cat: "Agentic AI & LLMs", items: ["LLMs","RAG","LangChain","LangGraph","ReAct workflows","Prompt engineering","ChromaDB","Pinecone"] },
+  { cat: "Data Eng. & Deployment", items: ["MLflow","FastAPI","Docker","Model monitoring","Drift checks","Grafana"] },
+  { cat: "Visualization", items: ["Plotly","Dash","Streamlit","Power BI"] }
+];
+
+const projects = [
+  {
+    title: "Steel Surface Defect Detection",
+    stack: "Python · PyTorch · Scikit-learn · Plotly · Streamlit",
+    desc: "U-Net-based semantic segmentation for steel surface defect detection on the Severstal dataset, handling severe class imbalance. Deployed with edge GPU inference, live drift monitoring, and a battery-industry adaptation (electrode coating, separator, tab/weld inspection).",
+    metric: "91.17% Dice score · 98%+ detection accuracy",
+    link: "https://github.com/amitkumargope/Amit-s_Kaggle_competitions-_2025/tree/main/Severstal-Steel%20Defect%20Detection",
+    img: "assets/proj-steel-defect.jpg"
+  },
+  {
+    title: "Yield Strength Prediction for Steel",
+    stack: "Python · PyTorch · Scikit-learn · Seaborn · Streamlit",
+    desc: "Ensemble pipeline (ExtraTrees + CatBoost) across 80+ metallurgical features with SHAP-based explainability, turning chemistry and process parameters into a deployed yield-strength prediction interface.",
+    metric: "RMSE 119.23 — 10.39% over baseline",
+    link: "https://github.com/amitkumargope/Amit-s_Kaggle_competitions-_2025/blob/main/Predicting%20the%20yield%20strength%20of%20steel/Predicting%20the%20yield%20strength%20of%20steel.ipynb",
+    img: "assets/proj-yield-strength.jpg"
+  },
+  {
+    title: "BOF WearIQ: Refractory Wear Analysis",
+    stack: "Python · PyTorch · Scikit-learn · Plotly · Streamlit",
+    desc: "Production-grade digital twin using 3D laser-scan data for zone-level refractory wear quantification, campaign tracking, anomaly detection, remaining-useful-life forecasting, and automated 2D/3D reporting.",
+    metric: "Confidential — production pipeline",
+    link: "https://github.com/amitkumargope/Vision_Driven_Digitalization_Projects_Steelmaking/tree/main/bof-refractory-wear-analytics",
+    img: "assets/proj-bof-weariq.jpg"
+  },
+  {
+    title: "Clogging Detection & Analytics System",
+    stack: "Python · XGBoost · LSTM · Isolation Forest · Grafana",
+    desc: "Real-time monitoring, prediction, and anomaly-detection system for continuous steel casting, integrating 31 process parameters across ladle, tundish, stopper, SEN and mould into a hybrid ML pipeline with live risk dashboards and root-cause alerts.",
+    metric: "35% fewer breakouts · 40% faster detection",
+    link: "https://github.com/amitkumargope/Clogging_detection",
+    img: "assets/proj-clogging-detection.jpg"
+  },
+  {
+    title: "Signal Segmentation & Stable Region Detection (MLF Analyzer)",
+    stack: "Python · PyTorch · DWT · EMD · BiLSTM+CNN",
+    desc: "Vibration &amp; level-fluctuation analytics for continuous casting — hybrid DWT/EMD signal decomposition feeding a deep anomaly-detection model, with a live stability index and MLOps deployment pipeline.",
+    metric: ">99% detection accuracy · <50ms latency",
+    link: "https://github.com/amitkumargope/Clogging_detection/blob/main/Vesuvius%20-%202026/Signal%20Analysis/VibroGo_Analyzer/VibroGo_DWT_Analysis.ipynb",
+    img: "assets/proj-mlf-analyzer.jpg"
+  },
+  {
+    title: "Hybrid LSTM/GRU Solar Irradiance Forecasting",
+    stack: "Python · TensorFlow · LSTM/GRU · Multimodal fusion",
+    desc: "Stacked LSTM/GRU deep learning model forecasting global horizontal irradiance from 15+ multimodal meteorological and pollution-related inputs, with anomaly detection and a real-time inference pipeline for grid-stability and energy-scheduling use cases.",
+    metric: "R² 0.92 · 92% accuracy",
+    link: "https://www.mdpi.com/2073-4360/14/13/2739",
+    img: "assets/proj-solar-irradiance.jpg"
+  },
+  {
+    title: "CPC-PVT Solar Thermal System with PCM Heat Sink",
+    stack: "MATLAB/Simulink · DSC/TGA · Sensor fusion",
+    desc: "Final thesis project: mathematical modeling and outdoor experimental validation of a compound parabolic collector PV/thermal system integrating phase-change material as a heat sink, with a full sensor suite and simulation-vs-experiment validation.",
+    metric: "15 wt.% paraffin PCM — optimal performance",
+    link: "",
+    img: "assets/proj-cpc-pvt-thesis.jpg"
+  }
+];
+
+const publications = [
+  {
+    title: "Quality Prediction and Abnormal Processing Parameter Identification in Polypropylene Fiber Melt Spinning Using AI, ML, and Deep Learning Algorithms",
+    meta: "Polymers, 14(13), 2739, 2022 · 126 citations · IF 4.967",
+    link: "https://www.mdpi.com/2073-4360/14/13/2739",
+    img: "assets/pub-polypropylene-quality.jpg"
+  },
+  {
+    title: "Improvement in Injection Molding Quality Performance with Innovative Cyclone Mixers Used in Polypropylene with Spherical Silicon Dioxide Composites",
+    meta: "Polymers, 14(22), 4932, 2022 · IF 4.967",
+    link: "https://www.mdpi.com/journal/polymers",
+    img: "assets/pub-cyclone-mixer.jpg"
+  }
+];
+
+const awards = [
+  { mark: "★", title: "NTUST & NSTC Merit Scholarships (Taiwan)", desc: "Multiple national and institutional scholarships for academic performance and research contribution in materials engineering and data-driven modeling." },
+  { mark: "★", title: "Best Poster & Best Paper Presentation Awards", desc: "Recognized for technical research and presentation during MSc studies in materials science with AI applications, 2021–2023." }
+];
+
+const education = [
+  {
+    degree: "MSc in Materials Science and Engineering (AI Applications)",
+    org: "National Taiwan University of Science and Technology, Taiwan",
+    when: "Feb 2021 – Feb 2023",
+    desc: "Research focus: machine learning for refractories, steelmaking, process optimization, and scientific AI for material systems."
+  },
+  {
+    degree: "B.Tech in Aeronautical Engineering",
+    org: "Vel Tech Rangarajan Dr. Sagunthala R&D Institute of Science and Technology, Chennai, India",
+    when: "Jul 2015 – Aug 2019",
+    desc: "Research focus: machine learning for aviation health management, turbofan predictive maintenance, structural integrity monitoring, and computer vision for aerospace materials. Semester exchange in Aerospace Engineering at National Cheng Kung University, Taiwan (Feb – Jul 2019)."
+  }
+];
+
+const certifications = [
+  { name: "Postgraduate Certification in Artificial Intelligence (24 ECTS)", meta: "European IT Certification Academy · Nov 2023 – Dec 2025" },
+  { name: "EITC/AI/MLP — EITCA Artificial Intelligence Programme", meta: "European IT Certification Academy" },
+  { name: "Thermal Modeling of Solar Energy Systems", meta: "" },
+  { name: "Solar PV Design using The Solar Labs Design Studio", meta: "" },
+  { name: "Microsoft Excel tricks (Mac & Windows), beginner–advanced", meta: "" }
+];
+
+/* --- LinkedIn "Latest Activity" — manually maintained ---
+   LinkedIn does not offer a public embeddable feed API for personal
+   profiles, so this section reads from the array below instead of
+   pulling live data. Whenever you publish a new LinkedIn post:
+     1. Add a new object to the TOP of linkedinPosts.
+     2. Fill in date, tag (topic), excerpt, and the post's URL.
+     3. Keep 3–6 entries so the grid stays tidy; delete the oldest.
+   To automate this later, a service such as RSS.app or Taggbox can
+   turn your public LinkedIn activity into a feed URL you fetch here,
+   or a Zapier automation can push new posts into a small JSON file
+   this page loads with fetch(). Both need a paid plan or a workaround,
+   since LinkedIn's own API doesn't expose this for personal profiles. */
+const linkedinPosts = [
+  // {
+  //   date: "2026-09-10",
+  //   tag: "Process AI",
+  //   excerpt: "Sharing results from a new vibration-analytics workflow for clogging detection in continuous casting...",
+  //   url: "https://www.linkedin.com/posts/amit-kumargope-1b223512b_example"
+  // },
+];
+
+/* ===================== RENDER ===================== */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const timelineEl = document.getElementById('timeline');
+experience.forEach((e, i) => {
+  const div = document.createElement('div');
+  div.className = 'tl-item';
+  div.innerHTML = `<div class="dot${e.current ? ' dot-current' : ''}">${String(i+1).padStart(2,'0')}</div>
+    <h4>${e.role}${e.current ? ' <span class="now-badge">PRESENT</span>' : ''}</h4>
+    <div class="org">${e.org}</div>
+    <div class="when">${e.when}</div>
+    <p>${e.desc}</p>`;
+  timelineEl.appendChild(div);
+});
+const earlierEl = document.createElement('p');
+earlierEl.className = 'earlier-note';
+earlierEl.textContent = earlierRoles;
+timelineEl.appendChild(earlierEl);
+
+const skillGrid = document.getElementById('skillGrid');
+skills.forEach(s => {
+  const div = document.createElement('div');
+  div.className = 'skill-cell';
+  div.innerHTML = `<h4>${s.cat}</h4><div class="chip-row">${s.items.map(i=>`<span class="chip">${i}</span>`).join('')}</div>`;
+  skillGrid.appendChild(div);
+});
+
+const projectGrid = document.getElementById('projectGrid');
+projects.forEach(p => {
+  const div = document.createElement('div');
+  div.className = 'project-card';
+  div.innerHTML = `<div class="project-shot-wrap"><img class="project-shot" src="${p.img}" alt="${p.title} — project dashboard"></div>
+    <h4>${p.title}</h4>
+    <div class="stack">${p.stack}</div>
+    <p>${p.desc}</p>
+    <div class="metric">${p.metric}</div>
+    ${p.link ? `<div class="links"><a href="${p.link}" target="_blank" rel="noopener">View on GitHub ↗</a></div>` : ''}`;
+  projectGrid.appendChild(div);
+});
+
+const pubList = document.getElementById('pubList');
+publications.forEach(p => {
+  const div = document.createElement('div');
+  div.className = 'pub-item';
+  div.innerHTML = `<div class="cite"><a href="${p.link}" target="_blank" rel="noopener">${p.title}</a></div>
+    <div class="meta">${p.meta}</div>
+    <img class="pub-shot" src="${p.img}" alt="${p.title} — research poster">`;
+  pubList.appendChild(div);
+});
+
+const awardList = document.getElementById('awardList');
+awards.forEach(a => {
+  const div = document.createElement('div');
+  div.className = 'award-item';
+  div.innerHTML = `<div class="mark">${a.mark}</div><div><h4>${a.title}</h4><p>${a.desc}</p></div>`;
+  awardList.appendChild(div);
+});
+
+const eduList = document.getElementById('eduList');
+education.forEach(e => {
+  const div = document.createElement('div');
+  div.className = 'edu-item';
+  div.innerHTML = `<h4>${e.degree}</h4><div class="org">${e.org}</div><div class="when">${e.when}</div><p>${e.desc}</p>`;
+  eduList.appendChild(div);
+});
+
+const certList = document.getElementById('certList');
+const certHeading = document.createElement('div');
+certHeading.className = 'cert-heading';
+certHeading.textContent = 'Certifications';
+certList.appendChild(certHeading);
+const certUl = document.createElement('ul');
+certUl.className = 'cert-list';
+certifications.forEach(c => {
+  const li = document.createElement('li');
+  li.innerHTML = `${c.name}${c.meta ? `<span class="meta">${c.meta}</span>` : ''}`;
+  certUl.appendChild(li);
+});
+certList.appendChild(certUl);
+
+const postGrid = document.getElementById('postGrid');
+if (linkedinPosts.length === 0) {
+  postGrid.innerHTML = `<p class="li-empty">No posts added yet — add entries to the <code>linkedinPosts</code> array in the page source to feature them here.</p>`;
+} else {
+  linkedinPosts.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'post-card';
+    div.innerHTML = `<div class="when">${p.date} · <span class="tag">${p.tag}</span></div>
+      <p>${p.excerpt}</p>
+      <a class="readmore" href="${p.url}" target="_blank" rel="noopener">Read on LinkedIn ↗</a>`;
+    postGrid.appendChild(div);
+  });
+}
+
+/* ===================== NAV SCROLLSPY ===================== */
+const navLinks = Array.from(document.querySelectorAll('.sitenav a'));
+const sections = navLinks.map(a => document.querySelector(a.getAttribute('href')));
+function onScroll(){
+  let idx = 0;
+  const y = window.scrollY + 140;
+  sections.forEach((s, i) => { if (s && s.offsetTop <= y) idx = i; });
+  navLinks.forEach((a,i) => a.classList.toggle('active', i === idx));
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* Mobile menu */
+const mobileBtn = document.getElementById('mobileMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
+mobileBtn.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  mobileBtn.setAttribute('aria-expanded', open);
+});
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileNav.classList.remove('open');
+  mobileBtn.setAttribute('aria-expanded', 'false');
+}));
+
+/* Copy email */
+document.getElementById('copyEmailBtn').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText('amitkumargope58@gmail.com');
+    const btn = document.getElementById('copyEmailBtn');
+    const old = btn.textContent;
+    btn.textContent = 'COPIED';
+    setTimeout(() => btn.textContent = old, 1500);
+  } catch(e) { /* clipboard unavailable — ignore */ }
+});
+
+/* ===================== SIGNAL WAVEFORM (hero) ===================== */
+(function(){
+  const canvas = document.getElementById('signal-canvas');
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w, h, dpr;
+  function resize(){
+    dpr = window.devicePixelRatio || 1;
+    w = canvas.clientWidth; h = canvas.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function drawFrame(t){
+    ctx.clearRect(0,0,w,h);
+    // baseline grid
+    ctx.strokeStyle = 'rgba(60,76,82,0.35)';
+    ctx.lineWidth = 1;
+    for(let gx=0; gx<w; gx+=40){ ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,h); ctx.stroke(); }
+
+    // composite waveform: irregular vibration-like signal
+    ctx.beginPath();
+    for(let x=0; x<=w; x+=2){
+      const p = x/w;
+      const y = h/2
+        + Math.sin(p*22 + t) * (h*0.16)
+        + Math.sin(p*55 + t*1.7) * (h*0.06)
+        + Math.sin(p*9 - t*0.6) * (h*0.10);
+      if (x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle = '#5FA8A0';
+    ctx.lineWidth = 1.6;
+    ctx.stroke();
+
+    ctx.beginPath();
+    for(let x=0; x<=w; x+=2){
+      const p = x/w;
+      const y = h/2
+        + Math.sin(p*22 + t + 0.6) * (h*0.10)
+        + Math.sin(p*13 - t*0.9) * (h*0.05);
+      if (x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle = 'rgba(194,112,61,0.55)';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+  }
+
+  if (reduceMotion) {
+    drawFrame(0);
+  } else {
+    let start = null;
+    function loop(ts){
+      if (!start) start = ts;
+      const t = (ts - start) / 1000;
+      drawFrame(t);
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  }
+})();
+</script>
+</body>
+</html>
