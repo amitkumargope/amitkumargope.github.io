@@ -39,7 +39,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --graphite: #10161A;
@@ -55,6 +55,9 @@
     --muted: #7E8B89;
     --danger-red: #B4543A;
     --radius: 2px;
+    --ring: var(--teal);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.35);
+    --shadow-md: 0 8px 24px -8px rgba(0,0,0,0.55);
     --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
   }
@@ -76,9 +79,18 @@
 
   a { color: var(--copper-bright); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+  a:active, button:active { opacity: 0.7; }
 
   ::selection { background: var(--copper); color: var(--graphite); }
+
+  .skip-link{
+    position: absolute; left: 1rem; top: -3rem;
+    background: var(--copper); color: var(--graphite);
+    font-family: var(--mono); font-size: 0.8rem; font-weight: 600;
+    padding: 0.6rem 1rem; z-index: 100; transition: top 0.15s ease;
+  }
+  .skip-link:focus{ top: 1rem; }
 
   h1,h2,h3,h4 { font-weight: 600; letter-spacing: -0.01em; }
 
@@ -206,7 +218,6 @@
 
   .project-shot{ display:block; width: 100%; border: 1px solid var(--line); margin-bottom: 0.2rem; }
   .project-shot-wrap{ overflow: hidden; }
-  .pub-shot{ width: 100%; border: 1px solid var(--line); margin-top: 0.8rem; }
 
   .hero{
     position: relative;
@@ -239,14 +250,17 @@
     font-size: 0.85rem;
     padding: 0.65rem 1.1rem;
     border: 1px solid var(--line-bright);
+    border-radius: var(--radius);
     color: var(--paper);
     background: transparent;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease, transform 0.1s ease;
   }
   .btn:hover{ border-color: var(--copper); color: var(--copper-bright); text-decoration:none; }
+  .btn:active{ transform: translateY(1px); }
   .btn.primary{ background: var(--copper); border-color: var(--copper); color: var(--graphite); }
   .btn.primary:hover{ background: var(--copper-bright); color: var(--graphite); }
 
@@ -325,13 +339,15 @@
     font-size: 0.78rem;
     padding: 0.25rem 0.55rem;
     border: 1px solid var(--line-bright);
+    border-radius: var(--radius);
     color: var(--paper-dim);
     font-family: var(--mono);
   }
 
   /* Projects */
   .project-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.4rem; }
-  .project-card{ border: 1px solid var(--line); padding: 1.5rem; display:flex; flex-direction:column; gap: 0.85rem; background: var(--graphite-2); }
+  .project-card{ border: 1px solid var(--line); padding: 1.5rem; display:flex; flex-direction:column; gap: 0.85rem; background: var(--graphite-2); transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
+  .project-card:hover{ transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--line-bright); }
   .project-card .project-shot-wrap{ margin: -1.5rem -1.5rem 0.3rem; overflow:hidden; border-bottom: 1px solid var(--line); }
   .project-card .project-shot{ width:100%; display:block; border:none; margin:0; transition: transform 0.4s ease; }
   .project-card:hover .project-shot{ transform: scale(1.03); }
@@ -366,7 +382,7 @@
   .cert-list li:last-child{ border-bottom:none; }
   .cert-list li .meta{ display:block; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-top: 0.25rem; }
 
-  .now-badge{ font-family: var(--mono); font-size: 0.6rem; color: var(--graphite); background: var(--teal); padding: 0.14rem 0.4rem; margin-left: 0.5rem; vertical-align: middle; letter-spacing: 0.04em; }
+  .now-badge{ font-family: var(--mono); font-size: 0.6rem; color: var(--graphite); background: var(--teal); border-radius: var(--radius); padding: 0.14rem 0.4rem; margin-left: 0.5rem; vertical-align: middle; letter-spacing: 0.04em; }
   .dot-current{ border-color: var(--teal); color: var(--teal); }
   .earlier-note{ font-size: 0.82rem; color: var(--muted); margin-top: 1.6rem; max-width: 68ch; }
 
@@ -380,7 +396,8 @@
     max-width: 62ch;
   }
   .repo-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.4rem; }
-  .repo-card{ border: 1px solid var(--line); padding: 1.4rem; background: var(--graphite-2); display:flex; flex-direction:column; gap: 0.7rem; }
+  .repo-card{ border: 1px solid var(--line); padding: 1.4rem; background: var(--graphite-2); display:flex; flex-direction:column; gap: 0.7rem; transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
+  .repo-card:hover{ transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--line-bright); }
   .repo-card h4{ font-size: 1rem; }
   .repo-card h4 a{ color: var(--paper); }
   .repo-card h4 a:hover{ color: var(--copper-bright); }
@@ -408,6 +425,7 @@
   /* Mobile */
   .mobile-topbar{ display:none; }
   @media (max-width: 880px){
+    html{ scroll-padding-top: 3.5rem; }
     .layout{ grid-template-columns: 1fr; }
     .sidebar{ display:none; }
     .mobile-topbar{
@@ -416,7 +434,7 @@
       position: sticky; top:0; background: var(--graphite); z-index: 20;
     }
     .mobile-topbar .initials{ font-family: var(--mono); font-size: 0.8rem; color: var(--teal); border:1px solid var(--line-bright); padding: 0.2rem 0.5rem; }
-    .mobile-menu-btn{ background:none; border: 1px solid var(--line-bright); color: var(--paper); font-family: var(--mono); font-size: 0.75rem; padding: 0.4rem 0.7rem; }
+    .mobile-menu-btn{ background:none; border: 1px solid var(--line-bright); border-radius: var(--radius); color: var(--paper); font-family: var(--mono); font-size: 0.75rem; padding: 0.4rem 0.7rem; }
     .mobile-nav{ display:none; flex-direction:column; border-bottom: 1px solid var(--line); }
     .mobile-nav.open{ display:flex; }
     .mobile-nav a{ padding: 0.85rem 1.25rem; color: var(--paper-dim); border-top: 1px solid var(--line); font-size: 0.9rem; }
@@ -427,11 +445,13 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <div class="mobile-topbar">
   <span class="initials">AKG</span>
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileNav">MENU</button>
 </div>
-<nav class="mobile-nav" id="mobileNav">
+<nav class="mobile-nav" id="mobileNav" aria-label="Section navigation">
   <a href="#home">Home</a>
   <a href="#about">About</a>
   <a href="#experience">Experience</a>
@@ -487,7 +507,7 @@
     <div class="sidebar-foot">TAOYUAN, TAIWAN · GMT+8</div>
   </aside>
 
-  <main>
+  <main id="main">
 
     <section class="hero" id="home">
       <div class="hero-top">
@@ -759,14 +779,12 @@ const publications = [
   {
     title: "Quality Prediction and Abnormal Processing Parameter Identification in Polypropylene Fiber Melt Spinning Using AI, ML, and Deep Learning Algorithms",
     meta: "Polymers, 14(13), 2739, 2022 · 126 citations · IF 4.967",
-    link: "https://www.mdpi.com/2073-4360/14/13/2739",
-    img: "assets/pub-polypropylene-quality.jpg", w: 900, h: 600
+    link: "https://www.mdpi.com/2073-4360/14/13/2739"
   },
   {
     title: "Improvement in Injection Molding Quality Performance with Innovative Cyclone Mixers Used in Polypropylene with Spherical Silicon Dioxide Composites",
     meta: "Polymers, 14(22), 4932, 2022 · IF 4.967",
-    link: "https://www.mdpi.com/journal/polymers",
-    img: "assets/pub-cyclone-mixer.jpg", w: 900, h: 600
+    link: "https://doi.org/10.3390/polym14224932"
   }
 ];
 
@@ -805,10 +823,12 @@ const githubReposFallback = [
   { name: "AI-Engineer-Roadmap", description: "A 20-week journey mastering Data Science, Machine Learning, Deep Learning, Computer Vision, MLOps, and Generative AI.", language: "Jupyter Notebook", html_url: "https://github.com/amitkumargope/AI-Engineer-Roadmap" },
   { name: "Deep-Neural-Networks-For-Clogging-Detection", description: "Use of deep neural networks for clogging detection in the submerged entry nozzle of continuous casting.", language: "Python", html_url: "https://github.com/amitkumargope/Deep-Neural-Networks-For-Clogging-Detection" },
   { name: "Amit-s_Kaggle_competitions-_2025", description: "Collection of Kaggle work spanning EDA, feature engineering, deep learning, model optimization, and deployment-ready pipelines.", language: "Jupyter Notebook", html_url: "https://github.com/amitkumargope/Amit-s_Kaggle_competitions-_2025" },
-  { name: "Naval-Propulsion-Plant-Predictive-Maintenance-Analysis", description: "Condition-based maintenance of naval propulsion plants.", language: "Jupyter Notebook", html_url: "https://github.com/amitkumargope/Naval-Propulsion-Plant-Predictive-Maintenance-Analysis" },
-  { name: "LaTex-Thesis-Template", description: "A reusable LaTeX thesis template.", language: null, html_url: "https://github.com/amitkumargope/LaTex-Thesis-Template" },
-  { name: "amitkumargope.github.io", description: "Source for this portfolio site.", language: "HTML", html_url: "https://github.com/amitkumargope/amitkumargope.github.io" }
+  { name: "Naval-Propulsion-Plant-Predictive-Maintenance-Analysis", description: "Condition-based maintenance of naval propulsion plants.", language: "Jupyter Notebook", html_url: "https://github.com/amitkumargope/Naval-Propulsion-Plant-Predictive-Maintenance-Analysis" }
 ];
+
+/* Repos excluded from the display (e.g. this site's own source, or
+   templates that aren't showcase-worthy projects) — matched by name. */
+const githubReposExcluded = ["amitkumargope.github.io", "LaTex-Thesis-Template"];
 
 /* ===================== RENDER ===================== */
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -855,8 +875,7 @@ publications.forEach(p => {
   const div = document.createElement('div');
   div.className = 'pub-item';
   div.innerHTML = `<div class="cite"><a href="${p.link}" target="_blank" rel="noopener">${p.title}</a></div>
-    <div class="meta">${p.meta}</div>
-    <img class="pub-shot" src="${p.img}" width="${p.w}" height="${p.h}" loading="lazy" alt="${p.title} — research poster">`;
+    <div class="meta">${p.meta}</div>`;
   pubList.appendChild(div);
 });
 
@@ -911,7 +930,7 @@ function renderRepos(repos) {
 fetch('https://api.github.com/users/amitkumargope/repos?per_page=100&sort=updated')
   .then(res => { if (!res.ok) throw new Error('GitHub API error'); return res.json(); })
   .then(repos => {
-    const publicOriginal = repos.filter(r => !r.private && !r.fork);
+    const publicOriginal = repos.filter(r => !r.private && !r.fork && !githubReposExcluded.includes(r.name));
     renderRepos(publicOriginal.length ? publicOriginal : githubReposFallback);
   })
   .catch(() => {
@@ -926,7 +945,10 @@ function onScroll(){
   let idx = 0;
   const y = window.scrollY + 140;
   sections.forEach((s, i) => { if (s && s.offsetTop <= y) idx = i; });
-  navLinks.forEach((a,i) => a.classList.toggle('active', i === idx));
+  navLinks.forEach((a,i) => {
+    a.classList.toggle('active', i === idx);
+    if (i === idx) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+  });
 }
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
