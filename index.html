@@ -409,15 +409,19 @@
 
   /* Contact */
   .contact-panel{ padding-bottom: 5rem; }
-  .contact-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
-  .contact-card{ border: 1px solid var(--line); padding: 1.4rem; display:flex; align-items:center; gap: 1rem; }
-  .contact-card svg{ width: 22px; height: 22px; color: var(--teal); flex-shrink:0; }
+  .contact-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; align-items: stretch; }
+  .contact-card{ border: 1px solid var(--line); padding: 1.4rem; display:flex; align-items:center; gap: 1rem; min-height: 88px; }
   .contact-card .l{ font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
-  .contact-card .v{ font-size: 0.98rem; }
+  .contact-card .v{ font-size: 0.98rem; overflow-wrap: anywhere; }
   .contact-card .v a{ color: var(--paper); }
   .contact-card .v a:hover{ color: var(--copper-bright); }
+  .contact-card .info{ flex: 1 1 auto; min-width: 0; }
 
-  .copy-btn{ background:none; border:none; color: var(--muted); cursor:pointer; font-family: var(--mono); font-size: 0.7rem; margin-left: auto; }
+  .contact-icon{ display:flex; align-items:center; justify-content:center; width: 44px; height: 44px; flex-shrink:0; border: 1px solid var(--line); border-radius: 50%; color: var(--teal); transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease; }
+  .contact-icon:hover{ border-color: var(--teal); background: rgba(45,212,191,0.08); transform: translateY(-2px); }
+  .contact-icon svg{ width: 20px; height: 20px; flex-shrink:0; }
+
+  .copy-btn{ background:none; border:none; color: var(--muted); cursor:pointer; font-family: var(--mono); font-size: 0.7rem; margin-left: auto; flex-shrink:0; align-self: center; }
   .copy-btn:hover{ color: var(--teal); }
 
   footer{ padding: 2rem 3.5rem; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap: 0.5rem; }
@@ -691,26 +695,36 @@
       <div class="panel-head"><h3>Get in touch</h3><span class="idx">09 / CONTACT</span></div>
       <div class="contact-grid">
         <div class="contact-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="m2 6 10 7L22 6"/></svg>
-          <div><div class="l">EMAIL</div><div class="v"><a href="mailto:amitgope01vesuvius@gmail.com">amitgope01vesuvius@gmail.com</a></div></div>
+          <a class="contact-icon" href="mailto:amitgope01vesuvius@gmail.com" aria-label="Email Amit Kumar Gope">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="m2 6 10 7L22 6"/></svg>
+          </a>
+          <div class="info"><div class="l">EMAIL</div><div class="v"><a href="mailto:amitgope01vesuvius@gmail.com">amitgope01vesuvius@gmail.com</a></div></div>
           <button class="copy-btn" id="copyEmailBtn" type="button">COPY</button>
         </div>
         <div class="contact-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-          <div><div class="l">PHONE</div><div class="v"><a href="tel:+886911569730">+886 911 569 730</a></div></div>
+          <a class="contact-icon" href="tel:+886911569730" aria-label="Call Amit Kumar Gope">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          </a>
+          <div class="info"><div class="l">PHONE</div><div class="v"><a href="tel:+886911569730">+886 911 569 730</a></div></div>
           <button class="copy-btn" id="copyPhoneBtn" type="button">COPY</button>
         </div>
         <div class="contact-card">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
-          <div><div class="l">LINKEDIN</div><div class="v"><a href="https://www.linkedin.com/in/amit-kumar-gope-1b223512b/" target="_blank" rel="noopener">amit-kumar-gope</a></div></div>
+          <a class="contact-icon" href="https://www.linkedin.com/in/amit-kumar-gope-1b223512b/" target="_blank" rel="noopener" aria-label="Amit Kumar Gope on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+          </a>
+          <div class="info"><div class="l">LINKEDIN</div><div class="v"><a href="https://www.linkedin.com/in/amit-kumar-gope-1b223512b/" target="_blank" rel="noopener">amit-kumar-gope</a></div></div>
         </div>
         <div class="contact-card">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.03 3.26 9.29 7.79 10.8.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.67 1.24 3.32.95.1-.74.4-1.25.72-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.48 3.13-1.17 3.13-1.17.63 1.57.24 2.73.12 3.02.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.34-5.21 5.62.41.36.77 1.06.77 2.15 0 1.55-.01 2.8-.01 3.18 0 .3.2.66.79.55A10.53 10.53 0 0 0 23.5 12.02C23.5 5.74 18.27.5 12 .5Z"/></svg>
-          <div><div class="l">GITHUB</div><div class="v"><a href="https://github.com/amitkumargope" target="_blank" rel="noopener">amitkumargope</a></div></div>
+          <a class="contact-icon" href="https://github.com/amitkumargope" target="_blank" rel="noopener" aria-label="Amit Kumar Gope on GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.03 3.26 9.29 7.79 10.8.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.67 1.24 3.32.95.1-.74.4-1.25.72-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.48 3.13-1.17 3.13-1.17.63 1.57.24 2.73.12 3.02.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.34-5.21 5.62.41.36.77 1.06.77 2.15 0 1.55-.01 2.8-.01 3.18 0 .3.2.66.79.55A10.53 10.53 0 0 0 23.5 12.02C23.5 5.74 18.27.5 12 .5Z"/></svg>
+          </a>
+          <div class="info"><div class="l">GITHUB</div><div class="v"><a href="https://github.com/amitkumargope" target="_blank" rel="noopener">amitkumargope</a></div></div>
         </div>
         <div class="contact-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.2A7 7 0 0 1 19 9.8C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
-          <div><div class="l">LOCATION</div><div class="v">Taoyuan, Taiwan</div></div>
+          <a class="contact-icon" href="https://www.google.com/maps/search/?api=1&query=Taoyuan%2C+Taiwan" target="_blank" rel="noopener" aria-label="Taoyuan, Taiwan on Google Maps">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.2A7 7 0 0 1 19 9.8C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+          </a>
+          <div class="info"><div class="l">LOCATION</div><div class="v"><a href="https://www.google.com/maps/search/?api=1&query=Taoyuan%2C+Taiwan" target="_blank" rel="noopener">Taoyuan, Taiwan</a></div></div>
         </div>
       </div>
     </section>
