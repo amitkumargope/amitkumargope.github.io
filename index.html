@@ -316,7 +316,7 @@
   /* Experience */
   .timeline{ position: relative; padding-left: 2.4rem; }
   .timeline::before{ content:""; position:absolute; left: 0.55rem; top: 0.4rem; bottom: 0.4rem; width:1px; background: var(--line-bright); }
-  .tl-item{ position: relative; padding-bottom: 2.6rem; }
+  .tl-item{ position: relative; padding-bottom: 2.6rem; display:flex; gap: 2.2rem; align-items: flex-start; flex-wrap: wrap; }
   .tl-item:last-child{ padding-bottom: 0; }
   .tl-item .dot{
     position:absolute; left: -2.4rem; top: 0.25rem;
@@ -326,10 +326,30 @@
     display:flex; align-items:center; justify-content:center;
     font-family: var(--mono); font-size: 0.6rem; color: var(--copper-bright);
   }
+  .tl-main{ flex: 1 1 420px; min-width: 0; }
   .tl-item h4{ font-size: 1.1rem; }
   .tl-item .org{ color: var(--teal); font-size: 0.9rem; margin-top: 0.15rem; }
   .tl-item .when{ font-family: var(--mono); font-size: 0.76rem; color: var(--muted); margin-top: 0.2rem; }
   .tl-item p{ color: var(--paper-dim); margin-top: 0.75rem; max-width: 72ch; font-size: 0.95rem; }
+
+  /* Per-role "what I worked on" icon panel */
+  .tl-icons{
+    flex: 0 0 auto;
+    display:flex; flex-wrap: wrap; gap: 1.1rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--line);
+    background: var(--graphite-2);
+    max-width: 230px;
+  }
+  .tl-icon{ display:flex; flex-direction:column; align-items:center; gap: 0.5rem; width: 62px; text-align:center; }
+  .tl-icon-badge{
+    width: 40px; height: 40px; flex-shrink:0;
+    border: 1px solid var(--line-bright); border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    color: var(--teal);
+  }
+  .tl-icon-badge svg{ width: 19px; height: 19px; }
+  .tl-icon-label{ font-family: var(--mono); font-size: 0.62rem; line-height: 1.25; color: var(--muted); }
 
   /* Skills */
   .skill-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
@@ -468,6 +488,27 @@
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="icon-battery"><rect x="2" y="7" width="17" height="10" rx="1.5"/><line x1="20" y1="10" x2="20" y2="14"/><path d="M12 9l-3 4h3l-3 4"/></g>
+    <g id="icon-brain"><circle cx="12" cy="12" r="2.2"/><circle cx="4" cy="6" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="20" cy="6" r="1.8"/><circle cx="20" cy="18" r="1.8"/><path d="M5.6 7.2 10.3 10.7M5.6 16.8 10.3 13.3M18.4 7.2 13.7 10.7M18.4 16.8 13.7 13.3"/></g>
+    <g id="icon-chart-line"><path d="M3 20h18"/><path d="M4 16l5-6 4 3 6-8"/><circle cx="4" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="13" r="1" fill="currentColor" stroke="none"/><circle cx="19" cy="5" r="1" fill="currentColor" stroke="none"/></g>
+    <g id="icon-factory"><path d="M3 21V11l5 3v-3l5 3V8l6 4v9H3Z"/><path d="M7 21v-4M12 21v-4M17 21v-4"/></g>
+    <g id="icon-thermometer"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></g>
+    <g id="icon-monitor"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/><path d="M6 13l3-4 3 2 4-5"/></g>
+    <g id="icon-database"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></g>
+    <g id="icon-atom"><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><ellipse cx="12" cy="12" rx="9" ry="3.8"/><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(120 12 12)"/></g>
+    <g id="icon-alert"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><circle cx="12" cy="17" r="0.9" fill="currentColor" stroke="none"/></g>
+    <g id="icon-layers"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 13l9 5 9-5"/></g>
+    <g id="icon-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></g>
+    <g id="icon-gear"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7"/><path d="M12 2v2.2M12 19.8V22M22 12h-2.2M4.2 12H2M19.07 4.93l-1.56 1.56M6.49 17.51l-1.56 1.56M19.07 19.07l-1.56-1.56M6.49 6.49 4.93 4.93"/></g>
+    <g id="icon-eye"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></g>
+    <g id="icon-wave"><path d="M2 12c1.5-4 3-4 4.5 0s3 4 4.5 0 3-4 4.5 0 3 4 4.5 0"/></g>
+    <g id="icon-turbine"><path d="M12 12V3"/><path d="M12 12 5 17"/><path d="M12 12 19 17"/><path d="M12 12V21"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></g>
+    <g id="icon-flow"><path d="M3 8c3-3 6-3 9 0s6 3 9 0"/><path d="M3 14c3-3 6-3 9 0s6 3 9 0"/><path d="M3 20c3-3 6-3 9 0s6 3 9 0"/></g>
+  </defs>
+</svg>
 
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -751,37 +792,67 @@ const experience = [
     org: "TrendPower Technology — Taoyuan City, Taiwan",
     when: "Aug 2026 – Present",
     current: true,
-    desc: "Applied AI research in the battery industry — battery analytics, state estimation, aging prediction, anomaly detection, predictive maintenance, and intelligent decision-support systems, using time-series modeling, deep learning, and hybrid physics–AI approaches."
+    desc: "Applied AI research in the battery industry — battery analytics, state estimation, aging prediction, anomaly detection, predictive maintenance, and intelligent decision-support systems, using time-series modeling, deep learning, and hybrid physics–AI approaches.",
+    icons: [
+      { id: "battery", label: "Battery Systems" },
+      { id: "brain", label: "Physics-Informed AI" },
+      { id: "chart-line", label: "Predictive Analytics" }
+    ]
   },
   {
     role: "AI Research Scientist – Materials",
     org: "Vesuvius Group PLC — Mons, Belgium",
     when: "Jun 2024 – Aug 2026",
-    desc: "Developed predictive analytics models for computational materials applications, designed deep learning models in TensorFlow for thermal conductivity and tensile strength prediction, and built ML pipelines integrating real-time sensor and process data from continuous steel casting systems to predict clogging behavior and identify operational drivers. Designed a Python-based real-time analytics dashboard combining statistical process control, signal processing, and ML for industrial diagnostics."
+    desc: "Developed predictive analytics models for computational materials applications, designed deep learning models in TensorFlow for thermal conductivity and tensile strength prediction, and built ML pipelines integrating real-time sensor and process data from continuous steel casting systems to predict clogging behavior and identify operational drivers. Designed a Python-based real-time analytics dashboard combining statistical process control, signal processing, and ML for industrial diagnostics.",
+    icons: [
+      { id: "factory", label: "Steel Casting" },
+      { id: "thermometer", label: "Thermal & Tensile ML" },
+      { id: "monitor", label: "Live Dashboards" }
+    ]
   },
   {
     role: "R&D Data Scientist – Materials",
     org: "Vesuvius Group PLC — Mons, Belgium",
     when: "Apr 2023 – Jun 2024",
-    desc: "Worked with large, high-dimensional industrial datasets, combining materials knowledge with AI methods to support process monitoring, anomaly detection, and operational intelligence — translating research insights into deployable analytics tools with industrial stakeholders."
+    desc: "Worked with large, high-dimensional industrial datasets, combining materials knowledge with AI methods to support process monitoring, anomaly detection, and operational intelligence — translating research insights into deployable analytics tools with industrial stakeholders.",
+    icons: [
+      { id: "database", label: "Industrial Data" },
+      { id: "atom", label: "Materials Science" },
+      { id: "alert", label: "Anomaly Detection" }
+    ]
   },
   {
     role: "AI Research Assistant – Materials and Modelling",
     org: "National Taiwan University of Science and Technology — Taipei, Taiwan",
     when: "Sep 2022 – Jan 2023",
-    desc: "Collaborated on classification models using Scikit-learn and Keras for quality identification in polypropylene fibre melt spinning. Processed experimental datasets with Pandas and NumPy, focusing on feature selection and dimensionality reduction (PCA). Implemented a hybrid LSTM/GRU model for solar irradiance prediction integrating meteorological and pollution characteristics."
+    desc: "Collaborated on classification models using Scikit-learn and Keras for quality identification in polypropylene fibre melt spinning. Processed experimental datasets with Pandas and NumPy, focusing on feature selection and dimensionality reduction (PCA). Implemented a hybrid LSTM/GRU model for solar irradiance prediction integrating meteorological and pollution characteristics.",
+    icons: [
+      { id: "atom", label: "Fibre Materials" },
+      { id: "layers", label: "PCA / Dim. Reduction" },
+      { id: "sun", label: "Solar Forecasting" }
+    ]
   },
   {
     role: "Machine Learning Engineer",
     org: "Sikharthy Infotech Pvt Ltd — Kolkata, India",
     when: "Oct 2019 – Nov 2020",
-    desc: "Built a deep learning predictive-maintenance model estimating remaining useful life of turbofan engines from sensor telemetry. Deployed a CNN-based computer vision pipeline detecting surface cracks and corrosion in fuselage skin images. Developed an autoencoder-based anomaly detection system for CFRP defect identification from ultrasonic scan data."
+    desc: "Built a deep learning predictive-maintenance model estimating remaining useful life of turbofan engines from sensor telemetry. Deployed a CNN-based computer vision pipeline detecting surface cracks and corrosion in fuselage skin images. Developed an autoencoder-based anomaly detection system for CFRP defect identification from ultrasonic scan data.",
+    icons: [
+      { id: "gear", label: "Turbofan RUL" },
+      { id: "eye", label: "Computer Vision" },
+      { id: "wave", label: "Ultrasonic Inspection" }
+    ]
   },
   {
     role: "AI & Computational Materials Intern",
     org: "National Cheng Kung University — Tainan City, Taiwan",
     when: "Feb 2019 – Aug 2019",
-    desc: "Designed and simulated a modified Francis turbine for vertical-axis wind turbine systems. Conducted CFD analysis using ANSYS Fluent and SolidWorks, investigating fluid-flow characteristics and validating models against theoretical benchmarks to improve renewable-energy generation efficiency."
+    desc: "Designed and simulated a modified Francis turbine for vertical-axis wind turbine systems. Conducted CFD analysis using ANSYS Fluent and SolidWorks, investigating fluid-flow characteristics and validating models against theoretical benchmarks to improve renewable-energy generation efficiency.",
+    icons: [
+      { id: "turbine", label: "Wind Turbine Design" },
+      { id: "flow", label: "CFD Simulation" },
+      { id: "chart-line", label: "Renewable Energy" }
+    ]
   }
 ];
 
@@ -921,11 +992,19 @@ const timelineEl = document.getElementById('timeline');
 experience.forEach((e, i) => {
   const div = document.createElement('div');
   div.className = 'tl-item';
+  const iconsHtml = (e.icons || []).map(ic => `
+    <div class="tl-icon">
+      <span class="tl-icon-badge" title="${ic.label}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-${ic.id}"></use></svg></span>
+      <span class="tl-icon-label">${ic.label}</span>
+    </div>`).join('');
   div.innerHTML = `<div class="dot${e.current ? ' dot-current' : ''}">${String(i+1).padStart(2,'0')}</div>
-    <h4>${e.role}${e.current ? ' <span class="now-badge">PRESENT</span>' : ''}</h4>
-    <div class="org">${e.org}</div>
-    <div class="when">${e.when}</div>
-    <p>${e.desc}</p>`;
+    <div class="tl-main">
+      <h4>${e.role}${e.current ? ' <span class="now-badge">PRESENT</span>' : ''}</h4>
+      <div class="org">${e.org}</div>
+      <div class="when">${e.when}</div>
+      <p>${e.desc}</p>
+    </div>
+    ${iconsHtml ? `<div class="tl-icons" aria-label="What I worked on">${iconsHtml}</div>` : ''}`;
   timelineEl.appendChild(div);
 });
 const earlierEl = document.createElement('p');
