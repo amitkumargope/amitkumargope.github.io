@@ -18,6 +18,14 @@
 <meta name="twitter:description" content="Battery intelligence, physics-informed ML, computer vision, and industrial process optimization.">
 <meta name="twitter:image" content="https://amitkumargope.github.io/assets/portrait.jpg">
 
+<!-- Security: Content Security Policy (defense-in-depth; GitHub Pages ignores http-equiv, but harmless) -->
+<meta http-equiv="Content-Security-Policy"
+  content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com; frame-ancestors 'none'; base-uri 'self'; form-action 'none'">
+
+<!-- Performance: Preload critical assets (LCP portrait + fonts) -->
+<link rel="preload" as="image" href="assets/portrait.jpg" fetchpriority="high">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2310161A'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='13' font-weight='700' fill='%23D98A54' text-anchor='middle'%3EAKG%3C/text%3E%3C/svg%3E">
 
 <script type="application/ld+json">
@@ -370,7 +378,7 @@
   .project-card{ border: 1px solid var(--line); padding: 1.5rem; display:flex; flex-direction:column; gap: 0.85rem; background: var(--graphite-2); transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
   .project-card:hover{ transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--line-bright); }
   .project-card .project-shot-wrap{ margin: -1.5rem -1.5rem 0.3rem; overflow:hidden; border-bottom: 1px solid var(--line); aspect-ratio: 16 / 9; }
-  .project-card .project-shot{ width:100%; height:100%; object-fit: cover; display:block; border:none; margin:0; transition: transform 0.4s ease; }
+  .project-card .project-shot{ width:100%; height:100%; object-fit: cover; display:block; border:none; margin:0; transition: transform 0.4s ease; will-change: transform; }
   .project-card:hover .project-shot{ transform: scale(1.03); }
   .project-card h4{ font-size: 1.05rem; }
   .project-card .stack{ font-family: var(--mono); font-size: 0.74rem; color: var(--muted); }
@@ -450,6 +458,9 @@
      letting the hero/panel background, border and corner brackets stay full-bleed. */
   main > .hero > *, main > .panel > *, main > footer{ max-width: 1180px; margin-left: auto; margin-right: auto; }
 
+  /* Scroll padding for anchor links (accounts for sticky sidebar/header) */
+  @media (min-width: 881px) { html { scroll-padding-top: 2.5rem; } }
+
   /* Mobile */
   .mobile-topbar{ display:none; }
   @media (max-width: 880px){
@@ -517,16 +528,16 @@
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileNav">MENU</button>
 </div>
 <nav class="mobile-nav" id="mobileNav" aria-label="Section navigation">
-  <a href="#home"><span class="tick">00</span>Home</a>
-  <a href="#about"><span class="tick">01</span>About</a>
-  <a href="#experience"><span class="tick">02</span>Experience</a>
-  <a href="#skills"><span class="tick">03</span>Skills</a>
-  <a href="#projects"><span class="tick">04</span>Projects</a>
-  <a href="#publications"><span class="tick">05</span>Publications</a>
-  <a href="#education"><span class="tick">06</span>Education</a>
-  <a href="#repos"><span class="tick">07</span>GitHub Repos</a>
-  <a href="#availability"><span class="tick">08</span>Open For</a>
-  <a href="#contact"><span class="tick">09</span>Contact</a>
+  <a href="#home"><span class="tick" aria-hidden="true">00</span>Home</a>
+  <a href="#about"><span class="tick" aria-hidden="true">01</span>About</a>
+  <a href="#experience"><span class="tick" aria-hidden="true">02</span>Experience</a>
+  <a href="#skills"><span class="tick" aria-hidden="true">03</span>Skills</a>
+  <a href="#projects"><span class="tick" aria-hidden="true">04</span>Projects</a>
+  <a href="#publications"><span class="tick" aria-hidden="true">05</span>Publications</a>
+  <a href="#education"><span class="tick" aria-hidden="true">06</span>Education</a>
+  <a href="#repos"><span class="tick" aria-hidden="true">07</span>GitHub Repos</a>
+  <a href="#availability"><span class="tick" aria-hidden="true">08</span>Open For</a>
+  <a href="#contact"><span class="tick" aria-hidden="true">09</span>Contact</a>
 </nav>
 
 <div class="layout">
@@ -540,16 +551,16 @@
 
     <nav class="sitenav" aria-label="Section navigation">
       <ul id="navList">
-        <li><a href="#home" class="active"><span class="tick">00</span>Home</a></li>
-        <li><a href="#about"><span class="tick">01</span>About</a></li>
-        <li><a href="#experience"><span class="tick">02</span>Experience</a></li>
-        <li><a href="#skills"><span class="tick">03</span>Skills</a></li>
-        <li><a href="#projects"><span class="tick">04</span>Projects</a></li>
-        <li><a href="#publications"><span class="tick">05</span>Publications</a></li>
-        <li><a href="#education"><span class="tick">06</span>Education</a></li>
-        <li><a href="#repos"><span class="tick">07</span>GitHub Repos</a></li>
-        <li><a href="#availability"><span class="tick">08</span>Open For</a></li>
-        <li><a href="#contact"><span class="tick">09</span>Contact</a></li>
+        <li><a href="#home" class="active"><span class="tick" aria-hidden="true">00</span>Home</a></li>
+        <li><a href="#about"><span class="tick" aria-hidden="true">01</span>About</a></li>
+        <li><a href="#experience"><span class="tick" aria-hidden="true">02</span>Experience</a></li>
+        <li><a href="#skills"><span class="tick" aria-hidden="true">03</span>Skills</a></li>
+        <li><a href="#projects"><span class="tick" aria-hidden="true">04</span>Projects</a></li>
+        <li><a href="#publications"><span class="tick" aria-hidden="true">05</span>Publications</a></li>
+        <li><a href="#education"><span class="tick" aria-hidden="true">06</span>Education</a></li>
+        <li><a href="#repos"><span class="tick" aria-hidden="true">07</span>GitHub Repos</a></li>
+        <li><a href="#availability"><span class="tick" aria-hidden="true">08</span>Open For</a></li>
+        <li><a href="#contact"><span class="tick" aria-hidden="true">09</span>Contact</a></li>
       </ul>
     </nav>
 
@@ -561,10 +572,10 @@
     </div>
 
     <div class="sidebar-links">
-      <a href="https://github.com/amitkumargope" target="_blank" rel="noopener" aria-label="GitHub">
+      <a href="https://github.com/amitkumargope" target="_blank" rel="noopener me" aria-label="GitHub">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.03 3.26 9.29 7.79 10.8.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.67 1.24 3.32.95.1-.74.4-1.25.72-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.48 3.13-1.17 3.13-1.17.63 1.57.24 2.73.12 3.02.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.34-5.21 5.62.41.36.77 1.06.77 2.15 0 1.55-.01 2.8-.01 3.18 0 .3.2.66.79.55A10.53 10.53 0 0 0 23.5 12.02C23.5 5.74 18.27.5 12 .5Z"/></svg>
       </a>
-      <a href="https://www.linkedin.com/in/amit-kumar-gope-1b223512b/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <a href="https://www.linkedin.com/in/amit-kumar-gope-1b223512b/" target="_blank" rel="noopener me" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
       </a>
       <a href="mailto:amitgope01vesuvius@gmail.com" aria-label="Email">
@@ -590,11 +601,24 @@
           </div>
         </div>
         <div class="portrait-frame">
-          <img src="assets/portrait.jpg" width="500" height="624" alt="Portrait of Amit Kumar Gope">
+          <img src="assets/portrait.jpg" width="500" height="624" alt="Amit Kumar Gope, Senior AI Research Engineer, professional portrait" fetchpriority="high">
           <span class="tag">TAOYUAN, TW</span>
         </div>
       </div>
       <canvas id="signal-canvas" aria-hidden="true"></canvas>
+      <!-- Fallback for reduced-motion / no-JS users -->
+      <noscript>
+        <svg class="signal-fallback" viewBox="0 0 400 90" aria-hidden="true" style="width:100%;height:90px;display:block;margin-top:2.5rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+          <defs>
+            <linearGradient id="waveGrad" x1="0" y1="0" x2="400" y2="0">
+              <stop offset="0%" stop-color="#5FA8A0"/>
+              <stop offset="100%" stop-color="#C2703D"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,45 C50,20 100,70 150,45 C200,20 250,70 300,45 C350,20 400,45 400,45" fill="none" stroke="url(#waveGrad)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M0,50 C60,35 120,60 180,50 C240,40 300,60 360,50" fill="none" stroke="rgba(194,112,61,0.55)" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </noscript>
     </section>
 
     <section class="panel" id="about">
@@ -754,16 +778,16 @@
           <button class="copy-btn" id="copyPhoneBtn" type="button">COPY</button>
         </div>
         <div class="contact-card">
-          <a class="contact-icon" href="https://www.linkedin.com/in/amit-kumar-gope-1b223512b/" target="_blank" rel="noopener" aria-label="Amit Kumar Gope on LinkedIn">
+          <a class="contact-icon" href="https://www.linkedin.com/in/amit-kumar-gope-1b223512b/" target="_blank" rel="noopener me" aria-label="Amit Kumar Gope on LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
           </a>
-          <div class="info"><div class="l">LINKEDIN</div><div class="v"><a href="https://www.linkedin.com/in/amit-kumar-gope-1b223512b/" target="_blank" rel="noopener">amit-kumar-gope</a></div></div>
+          <div class="info"><div class="l">LINKEDIN</div><div class="v"><a href="https://www.linkedin.com/in/amit-kumar-gope-1b223512b/" target="_blank" rel="noopener me">amit-kumar-gope</a></div></div>
         </div>
         <div class="contact-card">
-          <a class="contact-icon" href="https://github.com/amitkumargope" target="_blank" rel="noopener" aria-label="Amit Kumar Gope on GitHub">
+          <a class="contact-icon" href="https://github.com/amitkumargope" target="_blank" rel="noopener me" aria-label="Amit Kumar Gope on GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.03 3.26 9.29 7.79 10.8.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.67 1.24 3.32.95.1-.74.4-1.25.72-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.48 3.13-1.17 3.13-1.17.63 1.57.24 2.73.12 3.02.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.34-5.21 5.62.41.36.77 1.06.77 2.15 0 1.55-.01 2.8-.01 3.18 0 .3.2.66.79.55A10.53 10.53 0 0 0 23.5 12.02C23.5 5.74 18.27.5 12 .5Z"/></svg>
           </a>
-          <div class="info"><div class="l">GITHUB</div><div class="v"><a href="https://github.com/amitkumargope" target="_blank" rel="noopener">amitkumargope</a></div></div>
+          <div class="info"><div class="l">GITHUB</div><div class="v"><a href="https://github.com/amitkumargope" target="_blank" rel="noopener me">amitkumargope</a></div></div>
         </div>
         <div class="contact-card">
           <a class="contact-icon" href="https://www.google.com/maps/search/?api=1&query=Taoyuan%2C+Taiwan" target="_blank" rel="noopener" aria-label="Taoyuan, Taiwan on Google Maps">
@@ -1090,68 +1114,150 @@ function renderRepos(repos) {
   });
 }
 
-fetch('https://api.github.com/users/amitkumargope/repos?per_page=100&sort=updated')
-  .then(res => { if (!res.ok) throw new Error('GitHub API error'); return res.json(); })
-  .then(repos => {
-    const publicOriginal = repos.filter(r => !r.private && !r.fork && !githubReposExcluded.includes(r.name));
-    renderRepos(publicOriginal.length ? publicOriginal : githubReposFallback);
-  })
-  .catch(() => {
-    renderRepos(githubReposFallback);
-    document.getElementById('repoNote').textContent = 'Showing a recent snapshot of my public repositories — visit GitHub for the live list.';
-  });
+// GitHub repos fetch with localStorage cache (1hr TTL) to avoid rate limits
+  const CACHE_KEY = 'gh_repos_cache';
+  const CACHE_TTL = 3600000; // 1 hour
 
-/* ===================== NAV SCROLLSPY ===================== */
+  async function fetchReposWithCache() {
+    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
+    if (cached.timestamp && Date.now() - cached.timestamp < CACHE_TTL) {
+      return cached.data;
+    }
+    const res = await fetch('https://api.github.com/users/amitkumargope/repos?per_page=100&sort=updated');
+    if (!res.ok) throw new Error('GitHub API error');
+    const data = await res.json();
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), data }));
+    return data;
+  }
+
+  fetchReposWithCache()
+    .then(repos => {
+      const publicOriginal = repos.filter(r => !r.private && !r.fork && !githubReposExcluded.includes(r.name));
+      renderRepos(publicOriginal.length ? publicOriginal : githubReposFallback);
+    })
+    .catch(() => {
+      renderRepos(githubReposFallback);
+      document.getElementById('repoNote').textContent = 'Showing a recent snapshot of my public repositories — visit GitHub for the live list.';
+    });
+
+/* ===================== NAV SCROLLSPY (IntersectionObserver) ===================== */
 const navLinks = Array.from(document.querySelectorAll('.sitenav a'));
-const sections = navLinks.map(a => document.querySelector(a.getAttribute('href')));
+const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 const allNavLinks = Array.from(document.querySelectorAll('.sitenav a, .mobile-nav a'));
-function onScroll(){
-  let idx = 0;
-  const y = window.scrollY + 140;
-  sections.forEach((s, i) => { if (s && s.offsetTop <= y) idx = i; });
-  const activeHref = navLinks[idx].getAttribute('href');
-  allNavLinks.forEach(a => {
-    const isActive = a.getAttribute('href') === activeHref;
-    a.classList.toggle('active', isActive);
-    if (isActive) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
-  });
-}
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
 
-/* Mobile menu */
+// Create observer with rootMargin to account for sticky sidebar/header offset
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const activeHref = '#' + entry.target.id;
+      allNavLinks.forEach(a => {
+        const isActive = a.getAttribute('href') === activeHref;
+        a.classList.toggle('active', isActive);
+        if (isActive) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      });
+    }
+  });
+}, {
+  rootMargin: '-140px 0px -66% 0px', // Trigger when section top reaches ~140px from top
+  threshold: 0
+});
+
+sections.forEach(section => observer.observe(section));
+
+// Fallback for initial load (in case observer hasn't fired yet)
+function setInitialActive() {
+  const y = window.scrollY + 140;
+  let idx = 0;
+  sections.forEach((s, i) => { if (s && s.offsetTop <= y) idx = i; });
+  const activeHref = navLinks[idx]?.getAttribute('href');
+  if (activeHref) {
+    allNavLinks.forEach(a => {
+      const isActive = a.getAttribute('href') === activeHref;
+      a.classList.toggle('active', isActive);
+      if (isActive) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+}
+setInitialActive();
+
+/* Mobile menu with focus trap */
 const mobileBtn = document.getElementById('mobileMenuBtn');
 const mobileNav = document.getElementById('mobileNav');
+let lastFocusedElement = null;
+
+function trapFocus(element) {
+  const focusableElements = element.querySelectorAll(
+    'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])'
+  );
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  element.addEventListener('keydown', function handleTab(e) {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  });
+}
+
 mobileBtn.addEventListener('click', () => {
   const open = mobileNav.classList.toggle('open');
   mobileBtn.setAttribute('aria-expanded', open);
+  if (open) {
+    lastFocusedElement = document.activeElement;
+    trapFocus(mobileNav);
+    // Focus first link after transition
+    setTimeout(() => mobileNav.querySelector('a')?.focus(), 50);
+  } else {
+    lastFocusedElement?.focus();
+  }
 });
 mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   mobileNav.classList.remove('open');
   mobileBtn.setAttribute('aria-expanded', 'false');
+  mobileBtn.focus();
 }));
 
-/* Copy email */
-function wireCopyButton(btnId, value) {
+/* Copy email with screen-reader feedback */
+const copyStatus = document.createElement('div');
+copyStatus.setAttribute('aria-live', 'polite');
+copyStatus.setAttribute('aria-atomic', 'true');
+copyStatus.style.position = 'absolute';
+copyStatus.style.left = '-9999px';
+document.body.appendChild(copyStatus);
+
+function wireCopyButton(btnId, value, label) {
   const btn = document.getElementById(btnId);
   btn.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(value);
       const old = btn.textContent;
       btn.textContent = 'COPIED';
-      setTimeout(() => btn.textContent = old, 1500);
+      copyStatus.textContent = `${label} copied to clipboard`;
+      setTimeout(() => {
+        btn.textContent = old;
+        copyStatus.textContent = '';
+      }, 1500);
     } catch(e) { /* clipboard unavailable — ignore */ }
   });
 }
-wireCopyButton('copyEmailBtn', 'amitgope01vesuvius@gmail.com');
-wireCopyButton('copyPhoneBtn', '+886911569730');
+wireCopyButton('copyEmailBtn', 'amitgope01vesuvius@gmail.com', 'Email');
+wireCopyButton('copyPhoneBtn', '+886911569730', 'Phone');
 
 /* ===================== SIGNAL WAVEFORM (hero) ===================== */
 (function(){
   const canvas = document.getElementById('signal-canvas');
   const ctx = canvas.getContext('2d');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w, h, dpr;
+  let w, h, dpr, rafId = null, start = null;
   function resize(){
     dpr = window.devicePixelRatio || 1;
     w = canvas.clientWidth; h = canvas.clientHeight;
@@ -1195,18 +1301,36 @@ wireCopyButton('copyPhoneBtn', '+886911569730');
     ctx.stroke();
   }
 
-  if (reduceMotion) {
-    drawFrame(0);
-  } else {
-    let start = null;
-    function loop(ts){
-      if (!start) start = ts;
-      const t = (ts - start) / 1000;
-      drawFrame(t);
-      requestAnimationFrame(loop);
-    }
-    requestAnimationFrame(loop);
+  function loop(ts){
+    if (!start) start = ts;
+    const t = (ts - start) / 1000;
+    drawFrame(t);
+    rafId = requestAnimationFrame(loop);
   }
+
+  function startAnimation() {
+    if (reduceMotion) {
+      drawFrame(0);
+      return;
+    }
+    start = null;
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function stopAnimation() {
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+
+  // Pause when tab hidden, resume on focus
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAnimation();
+    else startAnimation();
+  });
+
+  startAnimation();
 })();
 </script>
 </body>
